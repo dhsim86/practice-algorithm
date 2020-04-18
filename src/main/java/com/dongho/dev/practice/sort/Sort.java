@@ -8,7 +8,7 @@ public class Sort {
 
             for (int j = i + 1; j < data.length; j++) {
                 if (data[target] > data[j]) {
-                    target = j;
+                    target = j;         // the least index of unsorted sub array.
                 }
             }
 
@@ -20,8 +20,8 @@ public class Sort {
 
     public static void insertionSort(int[] data) {
         for (int i = 1; i < data.length; i++) {
-            int target = data[i];
-            int j = i - 1;
+            int target = data[i];   // the target in unsorted sub array.
+            int j = i - 1;          // the last index of sorted sub array.
 
             for (; j >= 0 && data[j] > target; j--) {
                 data[j + 1] = data[j];
