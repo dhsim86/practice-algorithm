@@ -71,7 +71,8 @@ public class Dijkstra {
         int current = to;
         while (current != from) {
             if (result[current] == NONE) {
-                path[i++] = current = from;
+                path[i++] = from;
+                break;
             } else {
                 path[i++] = current = result[current];
             }
