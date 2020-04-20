@@ -64,7 +64,7 @@ public class Sort {
         while (i < mid && j < end) {
             if (array[i] <= array[j]) {
                 sortedArray[target++] = array[i++];
-            } else if (array[j] < array[i]) {
+            } else {
                 sortedArray[target++] = array[j++];
             }
         }
