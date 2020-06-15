@@ -15,6 +15,7 @@ public class Dijkstra {
             {Short.MAX_VALUE, Short.MAX_VALUE, Short.MAX_VALUE, 4, 5, Short.MAX_VALUE, 0}
         };
     private int[] distance = new int[MAX_COUNT];
+    // distance를 변경시킨 정점 기록
     private int[] result = new int[MAX_COUNT];
     private boolean[] visited = new boolean[MAX_COUNT];
 
@@ -25,6 +26,7 @@ public class Dijkstra {
     }
 
     private int getMinVertexByDistance() {
+        // 방문하지 않은 정점들 중 가장 최소값을 가지는 정점 선택
         int minIndex = 0;
         int minValue = Integer.MAX_VALUE;
 
@@ -44,6 +46,7 @@ public class Dijkstra {
     }
 
     private void calculateDistance(int to) {
+        // distance 재계
         for(int i = 0; i < MAX_COUNT; i++) {
             if (distance[i] > weight[to][i] + distance[to]) {
                 distance[i] = weight[to][i] + distance[to];
@@ -55,9 +58,9 @@ public class Dijkstra {
     public void calculate(int start) {
         visited[start] = true;
         for (int i = 0; i < MAX_COUNT; i++) {
-            distance[i] = weight[start][i];
+            distance[i] = weight[start][i]; // 시작 정점으로부터 distance 초기화
         }
-
+        // 방문하지 않은 인접 정점으로부터 가장 최소로 연결된 정점을 선택하여 방문 후 distance 재계산
         for(int i = 0; i < MAX_COUNT - 1; i++) {
             int minVertex = getMinVertexByDistance();
             calculateDistance(minVertex);

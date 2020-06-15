@@ -1,7 +1,5 @@
 package com.dongho.dev.practice.sort;
 
-import java.util.Arrays;
-
 public class Sort {
 
     public static void selectionSort(int[] data) {
@@ -10,10 +8,11 @@ public class Sort {
 
             for (int j = i + 1; j < data.length; j++) {
                 if (data[target] > data[j]) {
-                    target = j;         // the least index of unsorted sub array.
+                    target = j;         // 정렬되지 않은 요소에서 가장 작은 값을 가지는 인덱
                 }
             }
 
+            // 들어가야할 인덱스의 요소와 교환
             int tmp = data[i];
             data[i] = data[target];
             data[target] = tmp;
@@ -22,8 +21,8 @@ public class Sort {
 
     public static void insertionSort(int[] data) {
         for (int i = 1; i < data.length; i++) {
-            int target = data[i];   // the target in unsorted sub array.
-            int j = i - 1;          // the last index of sorted sub array.
+            int target = data[i];   // 정렬되지 않은 리스트에서 가장 앞의 값
+            int j = i - 1;          // 정렬된 리스트의 마지막 값
 
             for (; j >= 0 && data[j] > target; j--) {
                 data[j + 1] = data[j];
@@ -35,7 +34,7 @@ public class Sort {
 
     public static void bubbleSort(int[] data) {
         for (int i = data.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) {   // 두개 인접 요소를 선택하여 교
                 if (data[j] > data[j + 1]) {
                     int tmp = data[j];
                     data[j] = data[j + 1];
@@ -82,7 +81,7 @@ public class Sort {
     }
 
     public static void mergeSort(int[] data, int start, int end) {
-        if (start < end - 1) {
+        if (start < end - 1) {  // 한개 요소 이
             int mid = (start + end) / 2;
 
             mergeSort(data , start, mid);
