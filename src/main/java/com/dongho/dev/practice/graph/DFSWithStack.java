@@ -61,27 +61,28 @@ public class DFSWithStack {
     }
 
     public void dfs(int startVertex) {
-        visited[startVertex] = true;
         stack.push(startVertex);
-
-        log.info("{} visited", startVertex);
 
         while(stack.isEmpty() == false) {
             int vertex = stack.pop();
 
-            for (int i = 0; i < adjacent[vertex].length; i++) {
+            if (visited[vertex] == true) {
+                continue;
+            }
+
+            visited[vertex] = true;
+            log.info("{} visited", vertex);
+
+            for (int i = adjacent[vertex].length - 1; i >= 0; i--) {
                 if (adjacent[vertex][i] == 1 && visited[i] == false) {
-                    visited[i] = true;
                     stack.push(i);
-                    log.info("{} visited", i);
-                    break;
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        DFS dfs = new DFS(9);
+        DFSWithStack dfs = new DFSWithStack(9);
 
         dfs.addEdge(0, 1);
         dfs.addEdge(0, 2);
