@@ -18,12 +18,12 @@ public class DFS {
         visited = new boolean[n];
     }
 
-    void addEdge(int vertex0, int vertex1) {
+    public void addEdge(int vertex0, int vertex1) {
         adjacentArray[vertex0][vertex1] = 1;
         adjacentArray[vertex1][vertex0] = 1;
     }
 
-    void dfs(int startVertex) {
+    public void dfs(int startVertex) {
         visited[startVertex] = true;
         log.info("{} visited", startVertex);
 
