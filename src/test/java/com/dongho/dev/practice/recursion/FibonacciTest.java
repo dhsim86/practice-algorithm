@@ -32,6 +32,18 @@ public class FibonacciTest {
     }
 
     @Test
+    public void fibIterationTest() {
+        // given
+        Fibonacci.initFibMemoizationList(10);
+
+        // when
+        int result = Fibonacci.fibMemoization(10);
+
+        // then
+        assertThat(result).isEqualTo(55);
+    }
+
+    @Test
     public void fibPerfTest() {
         // given
         Fibonacci.initFibMemoizationList(45);

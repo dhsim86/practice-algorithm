@@ -35,4 +35,14 @@ public class Fibonacci {
         return fibMemoizationArray[n];
     }
 
+    public static int fibIteration(int n) {
+        fibMemoizationArray[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            fibMemoizationArray[i] = fibMemoizationArray[i - 2] + fibMemoizationArray[i];
+        }
+
+        return fibMemoizationArray[n];
+    }
+
 }
