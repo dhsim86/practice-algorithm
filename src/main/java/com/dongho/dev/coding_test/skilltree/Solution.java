@@ -6,7 +6,6 @@ public class Solution {
         int result = 0;
 
         for (int i = 0; i < skill_trees.length; i++) {
-            StringBuilder stringBuilder = new StringBuilder();
             int phase = 0;
             boolean match = true;
 
@@ -18,6 +17,7 @@ public class Solution {
                 if (skill.indexOf(skillCharacter) != -1) {
                     if (skill.charAt(phase) != skillCharacter) {
                         match = false;
+                        break;
                     } else {
                         phase++;
                     }
