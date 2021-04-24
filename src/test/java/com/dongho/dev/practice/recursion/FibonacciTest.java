@@ -37,7 +37,7 @@ public class FibonacciTest {
         Fibonacci.initFibMemoizationList(10);
 
         // when
-        int result = Fibonacci.fibMemoization(10);
+        int result = Fibonacci.fibIteration(10);
 
         // then
         assertThat(result).isEqualTo(55);

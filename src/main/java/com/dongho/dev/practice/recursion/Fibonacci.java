@@ -39,7 +39,7 @@ public class Fibonacci {
         fibMemoizationArray[1] = 1;
 
         for (int i = 2; i <= n; i++) {
-            fibMemoizationArray[i] = fibMemoizationArray[i - 2] + fibMemoizationArray[i];
+            fibMemoizationArray[i] = fibMemoizationArray[i - 2] + fibMemoizationArray[i - 1];
         }
 
         return fibMemoizationArray[n];
