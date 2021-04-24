@@ -3,7 +3,7 @@ package com.dongho.dev.practice.graph;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class BFSWithStack {
+public class BFSWithQueue {
 
     static class Queue {
 
@@ -48,7 +48,7 @@ public class BFSWithStack {
     private int[][] adjacent;
     private Queue queue;
 
-    public BFSWithStack(int vertex) {
+    public BFSWithQueue(int vertex) {
         visited = new boolean[vertex];
         adjacent = new int[vertex][];
 
@@ -86,7 +86,7 @@ public class BFSWithStack {
     }
 
     public static void main(String[] args) {
-        BFSWithStack bfs = new BFSWithStack(9);
+        BFSWithQueue bfs = new BFSWithQueue(9);
 
         bfs.addEdge(0, 1);
         bfs.addEdge(0, 2);
