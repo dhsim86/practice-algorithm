@@ -2,8 +2,11 @@ package com.dongho.dev.practice.graph;
 
 import org.junit.jupiter.api.Test;
 
+import lombok.extern.slf4j.Slf4j;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 public class DijkstraTest {
 
     @Test
@@ -19,6 +22,8 @@ public class DijkstraTest {
         String result4 = dijkstra.getMinimumPath(0, 4);
         String result5 = dijkstra.getMinimumPath(0, 5);
         String result6 = dijkstra.getMinimumPath(0, 6);
+
+        log.info("result: {}", dijkstra.getResult());
 
         // then
         assertThat(result1).isEqualTo("[0][4][1]");

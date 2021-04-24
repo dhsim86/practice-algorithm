@@ -1,5 +1,8 @@
 package com.dongho.dev.practice.graph;
 
+import lombok.Getter;
+
+@Getter
 public class Dijkstra {
 
     private static final int MAX_COUNT = 7;
@@ -73,6 +76,7 @@ public class Dijkstra {
 
         int current = to;
         while (current != from) {
+            // result 가 NONE이면 시작부터 바로 연결되어 있는 vertex
             if (result[current] == NONE) {
                 path[i++] = from;
                 break;
