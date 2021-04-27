@@ -22,4 +22,41 @@ public class Solution {
         return result.length() < tmp.length() ? tmp.length() : result.length();
     }
 
+    public int lengthOfLongestSubstringUsingSlidingWindow(String s) {
+        int startIndex = 0;
+        int endIndex = 0;
+        int max = 0;
+
+        if (s.length() == 0) {
+            return 0;
+        }
+
+        while(endIndex < s.length()) {
+            String subString = s.substring(startIndex, endIndex);
+            
+            if (subString.length() == 0) {
+                endIndex++;
+                continue;
+            }
+
+            int foundIndex = subString.indexOf(s.charAt(endIndex));
+            if (foundIndex >= 0) {
+                max = subString.length() > max ? subString.length() : max;
+                startIndex = startIndex + foundIndex + 1;
+            }
+
+            endIndex++;
+
+            if (endIndex >= s.length() && max < endIndex - startIndex) {
+                return endIndex - startIndex;
+            }
+        }
+
+        if (max == 0) {
+            return s.length();
+        }
+
+        return max;
+    }
+
 }
