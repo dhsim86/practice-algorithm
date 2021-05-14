@@ -28,10 +28,6 @@ public class Solution {
         int mid = (start + end) / 2;
         root.val = nums[mid];
 
-        if (end - start == 1) {
-            return root;
-        }
-
         root.left = getSubTree(new TreeNode(), nums, start, mid);
         root.right = getSubTree(new TreeNode(), nums, mid + 1, end);
 
