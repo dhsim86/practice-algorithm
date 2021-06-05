@@ -20,14 +20,6 @@ public class Solution {
     }
 
     public int getWays(int start, int end) {
-        if (start >= end) {
-            return 0;
-        }
-
-        if (start >= numberString.length() && end >= numberString.length()) {
-            return 0;
-        }
-
         if (dp[start][end] > 0) {
             return dp[start][end];
         }
