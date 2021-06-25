@@ -51,6 +51,8 @@ public class RandomizedSet {
 
         int lastValue = list.get(list.size() - 1);
         map.remove(lastValue);
+        map.remove(val);
+        
         map.put(lastValue, index);
 
         list.set(index, lastValue);
