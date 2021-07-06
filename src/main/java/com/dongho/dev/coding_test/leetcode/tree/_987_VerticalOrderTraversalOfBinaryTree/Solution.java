@@ -34,12 +34,10 @@ public class Solution {
     private static class NodeInfo implements Comparable<NodeInfo> {
         int val;
         int row;
-        int col;
 
         public NodeInfo(TreeNode node, int row, int col) {
             this.val = node.val;
             this.row = row;
-            this.col = col;
         }
 
         @Override
