@@ -1,8 +1,6 @@
 package com.dongho.dev.coding_test.leetcode.dynamic_programming._416_PartitionEqualSubsetSum;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
