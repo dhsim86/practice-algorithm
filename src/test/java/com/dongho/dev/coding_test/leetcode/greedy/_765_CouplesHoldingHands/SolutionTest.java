@@ -18,6 +18,12 @@ public class SolutionTest {
         assertThat(result1).isEqualTo(1);
         assertThat(result2).isEqualTo(0);
         assertThat(result3).isEqualTo(4);
+        
+        // 5, 6, 4, 0, 2, 1, 9, 3, 8, 7, 11, 10
+        // 5, 4, 6, 0, 2, 1, 9, 3, 8, 7, 11, 10   // 1
+        // 5, 4, 6, 7, 2, 1, 9, 3, 8, 0, 11, 10    // 2
+        // 5, 4, 6, 7, 2, 3, 9, 1, 8, 0, 11, 10     // 3
+        // 5, 4, 6, 7, 2, 3, 9, 8, 1, 0, 11, 10     // 4
     }
 
 }
