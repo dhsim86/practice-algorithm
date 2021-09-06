@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SolutionTest {
 
     @Test
-    public void SolutionTest() {
+    public void solutionTest() {
         // given
         int bridgeLength= 2;
         int weight = 10;
