@@ -13,7 +13,6 @@ public class Solution {
                 }
                 tmp += s.charAt(i);
                 tmp = tmp.substring(tmp.indexOf(s.charAt(i)) + 1, tmp.length());
-                System.out.println(tmp);
             } else {
                 tmp += s.charAt(i);
             }
