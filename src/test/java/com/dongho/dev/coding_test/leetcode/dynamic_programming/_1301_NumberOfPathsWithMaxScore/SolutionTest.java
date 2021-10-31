@@ -17,7 +17,7 @@ public class SolutionTest {
         // then
         //assertThat(result1).containsExactly(7, 1);
 
-        // Fix me to (34, 3)
+        // Fix me to (34, 3) 
         //assertThat(result2).containsExactly(34, 3);
         assertThat(result2).containsExactly(34, 2);
     }
