@@ -11,14 +11,13 @@ public class Solution {
             if (nums[mid] == target) {
                 return mid;
             }
-// 1 2 3 4 5 6 7 8
-            if (nums[mid] < target) {
+
+            if (target < nums[mid]) {
+                end = mid;
+            } else {
                 start = mid + 1;
             }
 
-            if (nums[mid] > target) {
-                end = mid;
-            }
             mid = (start + end) / 2;
         }
 
