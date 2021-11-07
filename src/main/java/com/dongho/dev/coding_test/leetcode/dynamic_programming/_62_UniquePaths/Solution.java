@@ -2,35 +2,34 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._62_UniquePaths;
 
 public class Solution {
 
-    private int xEndPos;
-    private int yEndPos;
     private int[][] dp;
+    private int m;
+    private int n;
 
-    public int getCount(int y, int x) {
-        if (dp[y][x] > 0) {
-            return dp[y][x];
+    private int getCount(int x, int y) {
+        if (dp[x][y] > 0) {
+            return dp[x][y];
         }
 
-        if (y == yEndPos - 1 && x == xEndPos - 1) {
+        if (x == m - 1 && y == n - 1) {
             return 1;
         }
 
-        if (y == yEndPos - 1) {
-            dp[y][x] = getCount(y, x + 1);
-        } else if (x == xEndPos - 1) {
-            dp[y][x] = getCount(y + 1, x);
+        if (x == m - 1) {
+            dp[x][y] = getCount(x, y + 1);
+        } else if (y == n - 1) {
+            dp[x][y] = getCount(x + 1, y);
         } else {
-            dp[y][x] = getCount(y, x + 1) + getCount(y + 1, x);
+            dp[x][y] = getCount(x + 1, y) + getCount(x, y + 1);
         }
 
-        return dp[y][x];
+        return dp[x][y];
     }
-    
-    public int uniquePaths(int m, int n) {
-        yEndPos = m;
-        xEndPos = n;
 
-        dp = new int[yEndPos][xEndPos];
+    public int uniquePaths(int m, int n) {
+        dp = new int[m][n];
+        this.m = m;
+        this.n = n;
 
         return getCount(0, 0);
     }
