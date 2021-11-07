@@ -1,44 +1,27 @@
 package com.dongho.dev.coding_test.leetcode.divide_and_conquer._53_MaximumSubArray;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Solution {
 
-    private int getSum(int[] nums, int start, int end) {
-        int sum = 0;
-        for (int i = start; i < end; i++) {
-            sum += nums[i];
-        }
-        return sum;
-    }
-
     public int maxSubArray(int[] nums) {
-        int startIndex = 0;
-        int endIndex = 0;
+        // refers: https://leetcode.com/problems/maximum-subarray/discuss/1560342/Maximum-Subarray-in-Java
 
-        int max = Integer.MIN_VALUE;
+        int sum = nums[0];
+        int res = nums[0];
+        
+        log.info("start for array: {}", nums);
+        log.info("sum: {}, res: {}", sum, res);
 
-        while(true) {
-            if (startIndex == nums.length || endIndex == nums.length) {
-                break;
-            }
+        for (int i = 1; i < nums.length; i++) {
+            sum = Integer.max(nums[i], sum + nums[i]);
+            res = Integer.max(res, sum);
 
-            if (startIndex == endIndex) {
-                endIndex++;
-                continue;
-            }
-
-            int sum = getSum(nums, startIndex, endIndex);
-            max = Math.max(max, sum);
-
-            if (sum < 0) {
-                startIndex = endIndex;
-                continue;
-            }
-
-            endIndex++;
+            log.info("sum: {}, res: {}", sum, res);
         }
 
-        max = Math.max(max, getSum(nums, startIndex, endIndex));
-        return max;
+        return res;
     }
     
 }
