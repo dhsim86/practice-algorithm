@@ -1,45 +1,39 @@
 package com.dongho.dev.coding_test.leetcode.dynamic_programming._64_MinimumPathSum;
 
-import java.util.Arrays;
-
 public class Solution {
 
     private int[][] grid;
     private int[][] dp;
-    private int xEndPos;
-    private int yEndPos;
+    private int yEnd;
+    private int xEnd;
 
-    private int getMinimumPath(int y, int x) {
-        if (dp[y][x] >= 0) {
+    private int getPathSum(int y, int x) {
+        if (dp[y][x] >= 1) {
             return dp[y][x];
         }
 
-        if (y == yEndPos - 1 && x == xEndPos - 1) {
+        if (y == yEnd && x == xEnd) {
             return grid[y][x];
         }
 
-        if (y == yEndPos - 1) {
-            dp[y][x] = getMinimumPath(y, x + 1) + grid[y][x];
-        } else if (x == xEndPos - 1) {
-            dp[y][x] = getMinimumPath(y + 1, x) + grid[y][x];
-        } else {
-            dp[y][x] = Math.min(getMinimumPath(y, x + 1) + grid[y][x], getMinimumPath(y + 1, x) + grid[y][x]);
+        if (y < yEnd && x < xEnd) {
+            dp[y][x] = grid[y][x] +
+                Math.min(getPathSum(y, x + 1), getPathSum(y + 1, x));
+        } else if (y < yEnd) {
+            dp[y][x] = grid[y][x] + getPathSum(y + 1, x);
+        } else if (x < xEnd) {
+            dp[y][x] = grid[y][x] + getPathSum(y, x + 1);
         }
-
         return dp[y][x];
     }
-    
+
     public int minPathSum(int[][] grid) {
         this.grid = grid;
-        yEndPos = grid.length;
-        xEndPos = grid[0].length;
-        dp = new int[yEndPos][xEndPos];
+        this.dp = new int[grid.length][grid[0].length];
+        this.yEnd = grid.length - 1;
+        this.xEnd = grid[0].length - 1;
 
-        for (int i = 0; i < yEndPos; i++) {
-            Arrays.fill(dp[i], -1);
-        }
-
-        return getMinimumPath(0, 0);
+        return getPathSum(0, 0);
     }
 
 }
