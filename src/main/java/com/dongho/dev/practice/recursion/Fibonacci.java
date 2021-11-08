@@ -2,6 +2,10 @@ package com.dongho.dev.practice.recursion;
 
 public class Fibonacci {
 
+    // f(0) => 0
+    // f(1) => 1
+    // f(n) => f(n - 1) + f(n - 2);
+
     public static int fib(int n) {
         if (n == 0) {
             return 0;
