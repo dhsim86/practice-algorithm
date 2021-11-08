@@ -1,98 +1,75 @@
 package com.dongho.dev.coding_test.leetcode.dynamic_programming._980_UniquePaths3;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class Solution {
 
+    // no: 0
+    // 
     private int[][] dp;
+
     private int[][] grid;
     private boolean[][] visited;
+    private int remainCount = 0;
 
-    private int xEnd;
-    private int yEnd;
-
-    private boolean checkBoundEx(int x, int y) {
-        if (x < 0 || y < 0 || x >= xEnd || y >= yEnd) {
+    private boolean checkBound(int y, int x) {
+        if (y < 0 || x < 0 || y >= grid.length || x >= grid[0].length) {
             return true;
         }
         return false;
     }
+    
+    private int getCount(int y, int x) {
+        if (checkBound(y, x) || visited[y][x]) {
+            return 0;
+        }
 
-    private boolean isAllVisited() {
-        for (int i = 0; i < visited.length; i++) {
-            for (int j = 0; j < visited[0].length; j++) {
-                if (visited[i][j] == false) {
-                    return false;
-                }
+        if (remainCount == 0 && dp[y][x] > 0) {
+            return dp[y][x];
+        }
+
+        if (grid[y][x] == -1) {
+            return 0;
+        }
+
+        if (grid[y][x] == 2) {
+            if (remainCount == 0) {
+                return 1;
+            } else {
+                return 0;
             }
         }
-        return true;
+
+        visited[y][x] = true;
+        remainCount--;
+
+        dp[y][x] = getCount(y, x + 1) + getCount(y + 1, x) + getCount(y, x - 1) + getCount(y - 1, x);
+
+        visited[y][x] = false;
+        remainCount++;
+        return dp[y][x];
     }
 
-    private int getCount(int x, int y) {
-        if (checkBoundEx(x, y)) {
-            return 0;
-        }
-        if (visited[x][y]) {
-            return 0;
-        }
-
-        if (dp[x][y] > 0) {
-            if (isAllVisited()) {
-                return dp[x][y];
-            }
-            return 0;
-        }
-
-        if (grid[x][y] == -1) {
-            return 0;
-        }
-
-        visited[x][y] = true;
-
-        if (grid[x][y] == 2) {
-            int result = 0;
-            if (isAllVisited()) {
-                log.info("complete x: {}, y: {}", y, x);
-                result = 1;
-            }
-            visited[x][y] = false;
-            return result;
-        }
-
-        dp[x][y] = getCount(x + 1, y) +
-            getCount(x, y + 1) + 
-            getCount(x - 1, y) +
-            getCount(x, y - 1);
-
-        visited[x][y] = false;
-
-        return dp[x][y];
-    }
 
     public int uniquePathsIII(int[][] grid) {
+        this.grid = grid;
+        this.remainCount = grid.length * grid[0].length;
+
         dp = new int[grid.length][grid[0].length];
         visited = new boolean[grid.length][grid[0].length];
-        this.grid = grid;
-
-        xEnd = dp.length;
-        yEnd = dp[0].length;
-
-        int xStart = 0;
-        int yStart = 0;
+        int startY = 0;
+        int startX = 0;
         
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) {
-                    xStart = i;
-                    yStart = j;
-                } else if (grid[i][j] == -1) {
-                    visited[i][j] = true;
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[0].length; x++) {
+                if (grid[y][x] == 1) {
+                    startY = y;
+                    startX = x;
+                } else if (grid[y][x] == -1 || grid[y][x] == 2) {
+                    remainCount--;
                 }
             }
         }
 
-        return getCount(xStart, yStart);
+        int count = getCount(startY, startX);
+        return count;
     }
 }

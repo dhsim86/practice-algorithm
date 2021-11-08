@@ -10,14 +10,27 @@ public class SolutionTest {
         // given
 
         // when
-        int result = new Solution().uniquePathsIII(new int[][] {
+        int result1 = new Solution().uniquePathsIII(new int[][] {
             {1, 0, 0, 0},
             {0, 0, 0, 0},
             {0, 0, 2, -1}
         });
 
+        int result2 = new Solution().uniquePathsIII(new int[][] {
+            {1, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, 0, 0, 2}
+        });
+        
+        int result3 = new Solution().uniquePathsIII(new int[][] {
+            {0, 1},
+            {2, 0}
+        });
+
         // then
-        assertThat(result).isEqualTo(2);
+        assertThat(result1).isEqualTo(2);
+        assertThat(result2).isEqualTo(4);
+        assertThat(result3).isEqualTo(0);
     }
     
 }
