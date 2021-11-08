@@ -2,10 +2,6 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._980_UniquePaths
 
 public class Solution {
 
-    // no: 0
-    // 
-    private int[][] dp;
-
     private int[][] grid;
     private boolean[][] visited;
     private int remainCount = 0;
@@ -20,10 +16,6 @@ public class Solution {
     private int getCount(int y, int x) {
         if (checkBound(y, x) || visited[y][x]) {
             return 0;
-        }
-
-        if (remainCount == 0 && dp[y][x] > 0) {
-            return dp[y][x];
         }
 
         if (grid[y][x] == -1) {
@@ -41,11 +33,11 @@ public class Solution {
         visited[y][x] = true;
         remainCount--;
 
-        dp[y][x] = getCount(y, x + 1) + getCount(y + 1, x) + getCount(y, x - 1) + getCount(y - 1, x);
+        int result = getCount(y, x + 1) + getCount(y + 1, x) + getCount(y, x - 1) + getCount(y - 1, x);
 
         visited[y][x] = false;
         remainCount++;
-        return dp[y][x];
+        return result;
     }
 
 
@@ -53,7 +45,6 @@ public class Solution {
         this.grid = grid;
         this.remainCount = grid.length * grid[0].length;
 
-        dp = new int[grid.length][grid[0].length];
         visited = new boolean[grid.length][grid[0].length];
         int startY = 0;
         int startX = 0;
