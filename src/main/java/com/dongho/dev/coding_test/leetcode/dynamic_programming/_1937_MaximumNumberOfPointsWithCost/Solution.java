@@ -1,7 +1,5 @@
 package com.dongho.dev.coding_test.leetcode.dynamic_programming._1937_MaximumNumberOfPointsWithCost;
 
-import java.util.Arrays;
-
 public class Solution {
 
     private int[][] points;
