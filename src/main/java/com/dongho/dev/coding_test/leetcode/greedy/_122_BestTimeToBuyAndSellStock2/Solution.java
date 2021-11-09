@@ -4,33 +4,22 @@ public class Solution {
 
     public int maxProfit(int[] prices) {
         int profit = 0;
-        int buy = 0;
-        boolean bought = false;
+        int start = 0;
+        int end = 0;
 
-        for (int i = 0; i < prices.length - 1; i++) {
-            if (bought && prices[i + 1] >= prices[i]) {
-                continue;
-            }
-
-            if (!bought && prices[i + 1] <= prices[i]) {
-                continue;
-            }
-
-            if (bought) {
-                profit += prices[i] - prices[buy];
-                bought = false;
-                continue;
-            }
-
-            if (!bought) {
-                buy = i;
-                bought = true;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[end] < prices[i]) {
+                end = i;
+            } else if (prices[end] > prices[i]) {
+                profit += prices[end] - prices[start];
+                start = end = i;
+            } 
+            
+            if (i == prices.length - 1) {
+                profit += prices[end] - prices[start];
             }
         }
-        if (bought) {
-            profit += prices[prices.length - 1] - prices[buy];
-        }
-
+        
         return profit;
     }
 
