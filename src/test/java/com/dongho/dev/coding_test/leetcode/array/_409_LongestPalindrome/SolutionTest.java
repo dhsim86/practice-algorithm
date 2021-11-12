@@ -12,9 +12,10 @@ public class SolutionTest {
         // when
 
         // then
-        assertThat(new Solution().longestPalindrome("a")).isEqualTo(1);
-        assertThat(new Solution().longestPalindrome("bb")).isEqualTo(2);
-        assertThat(new Solution().longestPalindrome("ccc")).isEqualTo(3);
+        //assertThat(new Solution().longestPalindrome("a")).isEqualTo(1);
+        //assertThat(new Solution().longestPalindrome("bb")).isEqualTo(2);
+        //assertThat(new Solution().longestPalindrome("ccc")).isEqualTo(3);
+        assertThat(new Solution().longestPalindrome("abccccdd")).isEqualTo(7);
     }
 
 }
