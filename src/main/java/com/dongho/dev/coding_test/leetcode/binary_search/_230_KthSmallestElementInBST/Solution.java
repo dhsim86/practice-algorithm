@@ -21,24 +21,25 @@ class TreeNode {
 
 public class Solution {
 
-    int number = 0;
-    int result;
+    int result = 0;
+    int order = 0;
 
     private void getKthSmallestNode(TreeNode node, int k) {
-        if (node == null || number == k) {
+        if (node == null) {
             return;
         }
 
         getKthSmallestNode(node.left, k);
-        number++;
+        order++;
 
-        if (number == k) {
+        if (order == k) {
             result = node.val;
         }
 
         getKthSmallestNode(node.right, k);
     }
-    
+
+
     public int kthSmallest(TreeNode root, int k) {
         getKthSmallestNode(root, k);
         return result;
