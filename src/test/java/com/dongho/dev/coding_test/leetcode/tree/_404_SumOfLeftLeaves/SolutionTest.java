@@ -26,15 +26,19 @@ public class SolutionTest {
 
         root2.left.right.right.left = new TreeNode(-2);
         root2.right.left.right.left = new TreeNode(4);
+
+        TreeNode root3 = new TreeNode(1);
         
 
         // when
-        //int result1 = new Solution().sumOfLeftLeaves(root1);
+        int result1 = new Solution().sumOfLeftLeaves(root1);
         int result2 = new Solution().sumOfLeftLeaves(root2);
+        int result3 = new Solution().sumOfLeftLeaves(root3);
 
         // then
-        //assertThat(result1).isEqualTo(24);
+        assertThat(result1).isEqualTo(24);
         assertThat(result2).isEqualTo(2);
+        assertThat(result3).isEqualTo(0);
     }
 
 }

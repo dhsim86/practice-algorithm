@@ -21,32 +21,26 @@ class TreeNode {
 
 public class Solution {
 
-    private int calculateLeftLeavesValue(TreeNode node, boolean isSum) {
+    private int getValLeftValues(TreeNode parent, TreeNode node) {
         if (node == null) {
             return 0;
         }
 
         if (node.left == null && node.right == null) {
-            if (isSum) {
+            if (parent != null && parent.left == node) {
                 return node.val;
             }
         }
 
-        int val = calculateLeftLeavesValue(node.left, true);
-        
-        if (node.right != null) {
-            val += calculateLeftLeavesValue(node.right, false);
-        }
-
-        return val;
+        return getValLeftValues(node, node.left) + getValLeftValues(node, node.right);
     }
-    
+
     public int sumOfLeftLeaves(TreeNode root) {
-        if (root.left == null && root.right == null) {
+        if (root == null) {
             return 0;
         }
 
-        return calculateLeftLeavesValue(root, false);
+        return getValLeftValues(null, root);
     }
 
 }
