@@ -3,33 +3,20 @@ package com.dongho.dev.coding_test.leetcode.greedy._392_IsSubsequence;
 public class Solution {
     
     public boolean isSubsequence(String s, String t) {
-        if (s.length() == 0) {
+        if (s.isEmpty()) {
             return true;
         }
 
-        if (t.length() == 0) {
-            return false;
-        }
+        for (char c : s.toCharArray()) {
+            int idx = t.indexOf(c);
 
-        int subsequentIndex = 0;
-        int originalIndex = 0;
-
-        while (subsequentIndex < s.length() && originalIndex < t.length()) {
-            int found = t.substring(originalIndex, t.length()).indexOf(s.charAt(subsequentIndex));
-
-            if (found >= 0) {
-                subsequentIndex++;
-                originalIndex = originalIndex + found + 1;
-                continue;
+            if (idx != -1) {
+                t = t.substring(idx + 1, t.length());
             } else {
-                break;
+                return false;
             }
         }
-
-        if (subsequentIndex >= s.length()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
 }
