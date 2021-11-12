@@ -14,8 +14,7 @@ public class Solution {
 
         return map.entrySet().stream()
             .filter(e -> e.getValue() == 1)
-            .map(e -> e.getKey())
-            .mapToInt(key -> key)
+            .mapToInt(e -> e.getKey())
             .toArray();
     }
 
