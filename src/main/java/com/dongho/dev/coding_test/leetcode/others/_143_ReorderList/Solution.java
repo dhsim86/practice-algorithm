@@ -1,10 +1,7 @@
 package com.dongho.dev.coding_test.leetcode.others._143_ReorderList;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 
 class ListNode {
     int val;
