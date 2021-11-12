@@ -21,51 +21,25 @@ class TreeNode {
 
 public class Solution {
 
-    private TreeNode traverse(TreeNode node, int pValue, int qValue) {
-        if (node == null) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
             return null;
         }
 
-        if (node.val == pValue || node.val == qValue) {
-            return node;
-        }
-
-        TreeNode result1 = traverse(node.left, pValue, qValue);
-        TreeNode result2 = traverse(node.right, pValue, qValue);
-
-        if (result1 != null && result2 != null) {
-            return node;
-        }
-        if (result1 != null) {
-            return result1;
-        }
-        if (result2 != null) {
-            return result2;
-        }
-
-        return null;
-    }
-
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (p.val == root.val || q.val == root.val) {
+        if (root.val == p.val || root.val == q.val) {
             return root;
         }
 
-        TreeNode result1 = traverse(root.left, p.val, q.val);
-        TreeNode result2 = traverse(root.right, p.val, q.val);
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-        if (result1 != null && result2 != null) {
+        if (left != null && right != null) {
             return root;
+        } else if (left == null) {
+            return right;
+        } else {
+            return left;
         }
-
-        if (result1 != null) {
-            return result1;
-        }
-
-        if (result2 != null) {
-            return result2;
-        }
-
-        return null;
     }
+
 }
