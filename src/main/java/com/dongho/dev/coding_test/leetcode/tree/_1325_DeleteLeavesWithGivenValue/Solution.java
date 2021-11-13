@@ -21,23 +21,23 @@ class TreeNode {
 
 public class Solution {
 
-    public TreeNode postfixTraverseAndDelete(TreeNode root, int target) {
-        if (root == null) {
+    private TreeNode deleteLeafNode(TreeNode parent, TreeNode node, int target) {
+        if (node == null) {
             return null;
         }
 
-        root.left = postfixTraverseAndDelete(root.left, target);
-        root.right = postfixTraverseAndDelete(root.right, target);
+        node.left = deleteLeafNode(node, node.left, target);
+        node.right = deleteLeafNode(node, node.right, target);
 
-        if (root.val == target && root.left == null && root.right == null) {
+        if (node.left == null && node.right == null && node.val == target) {
             return null;
         }
 
-        return root;
+        return node;
     }
 
     public TreeNode removeLeafNodes(TreeNode root, int target) {
-        root = postfixTraverseAndDelete(root, target);
-        return root;
+        return deleteLeafNode(null, root, target);
     }
+
 }

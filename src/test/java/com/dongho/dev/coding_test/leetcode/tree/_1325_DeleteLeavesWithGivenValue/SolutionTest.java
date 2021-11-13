@@ -17,7 +17,7 @@ public class SolutionTest {
         input1.right.right = new TreeNode(4);
 
         // when
-        TreeNode result1 = new Solution().postfixTraverseAndDelete(input1, 2);
+        TreeNode result1 = new Solution().removeLeafNodes(input1, 2);
 
         // then
         assertThat(result1.val).isEqualTo(1);
