@@ -20,21 +20,23 @@ class TreeNode {
 }
 
 public class Solution {
-    private TreeNode merge(TreeNode root1, TreeNode root2) {
-        if (root1 == null) {
-            return root2;
+
+    private TreeNode merge(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null) {
+            return null;
         }
 
-        if (root2 == null) {
-            return root1;
+        if (node1 == null) {
+            return node2;
+        } else if (node2 == null) {
+            return node1;
         }
 
-        root1.val = root1.val + root2.val;
+        TreeNode newNode = new TreeNode(node1.val + node2.val);
+        newNode.left = merge(node1.left, node2.left);
+        newNode.right = merge(node1.right, node2.right);
 
-        root1.left = merge(root1.left, root2.left);
-        root1.right = merge(root1.right, root2.right);
-
-        return root1;
+        return newNode;
     }
 
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
