@@ -29,13 +29,22 @@ public class SolutionTest {
         TreeNode root3 = null;
         TreeNode root4 = new TreeNode(1);
 
+        TreeNode root5 = new TreeNode(0);
+        root5.left = null;
+        root5.right = new TreeNode(1);
+        TreeNode root6 = new TreeNode(0);
+        root6.left = null;
+        root6.right = new TreeNode(1);
+
         // when
         boolean result1 = new Solution().flipEquiv(root1, root2);
         boolean result2 = new Solution().flipEquiv(root3, root4);
+        boolean result3 = new Solution().flipEquiv(root5, root6);
 
         // then
         assertThat(result1).isTrue();
         assertThat(result2).isFalse();
+        assertThat(result3).isTrue();
     }
     
 }

@@ -19,131 +19,28 @@ class TreeNode {
     }
 }
 
-public class Solution {
-
-    private void flip(TreeNode node) {
-        TreeNode tmp = node.left;
-        node.left = node.right;
-        node.right = tmp;
-    }
-
-    private boolean isFlipable(TreeNode node1, TreeNode node2) {
-        if (node1 == null && node2 == null) {
-            return true;
-        }
-
-        if (node1 == null && node2 != null) {
-            return false;
-        }
-
-        if (node1 != null && node2 == null) {
-            return false;
-        }
-
-        if (node1.val != node2.val) {
-            return false;
-        }
-
-        if (node1.left != null) {
-            if (node2.right == null) {
-                return false;
+class Solution {
+    private void flip(TreeNode parent1, TreeNode parent2) {
+        if (parent1 != null && parent2 != null) {
+            if ((parent1.left != null && parent2.left != null && parent1.left.val != parent2.left.val) ||
+                (parent1.right == null && parent2.left == null) || (parent1.left == null && parent2.right == null)) {
+                TreeNode node = parent1.left;
+                parent1.left = parent1.right;
+                parent1.right = node;
             }
-
-            if (node1.left.val != node2.right.val) {
-                return false;
-            }
-        } else {
-            if (node2.right != null) {
-                return false;
-            }
-        }
-
-        if (node1.right != null) {
-            if (node2.left == null) {
-                return false;
-            }
-
-            if (node1.right.val != node2.left.val) {
-                return false;
-            }
-        } else {
-            if (node2.left != null) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private boolean isEqual(TreeNode node1, TreeNode node2) {
-        if (node1 == null && node2 == null) {
-            return true;
-        }
-
-        if (node1 == null && node2 != null) {
-            return false;
-        }
-
-        if (node1 != null && node2 == null) {
-            return false;
-        }
-
-        if (node1.val != node2.val) {
-            return false;
-        }
-
-        if (node1.left != null) {
-            if (node2.left == null) {
-                return false;
-            }
-
-            if (node1.left.val != node2.left.val) {
-                return false;
-            }
-        } else {
-            if (node2.left != null) {
-                return false;
-            }
-        }
-
-        if (node1.right != null) {
-            if (node2.right == null) {
-                return false;
-            }
-
-            if (node1.right.val != node2.right.val) {
-                return false;
-            }
-        } else {
-            if (node2.right != null) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean intraverseAndFlip(TreeNode node1, TreeNode node2) {
-        if (node1 == null && node2 == null) {
-            return true;
-        }
-
-        if (isEqual(node1, node2)) {
-            return intraverseAndFlip(node1.left, node2.left) &&
-                intraverseAndFlip(node1.right, node2.right);
-        } else {
-            if (isFlipable(node1, node2) == false) {
-                return false;
-            }
-    
-            flip(node2);
-    
-            return intraverseAndFlip(node1.left, node2.left) &&
-                intraverseAndFlip(node1.right, node2.right);
         }
     }
 
     public boolean flipEquiv(TreeNode root1, TreeNode root2) {
-        return intraverseAndFlip(root1, root2);
+        if (root1 == null && root2 == null) {
+            return true;
+        }
+
+        if (root1 != null && root2 != null && root1.val == root2.val) {
+            flip(root1, root2);
+            return flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right);
+        }
+
+        return false;
     }
 }
