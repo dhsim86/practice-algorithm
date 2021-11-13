@@ -21,24 +21,19 @@ class TreeNode {
 
 public class Solution {
 
-    public boolean traverse(TreeNode node, int parentValue) {
+    private int val = 0;
+
+    private boolean isSame(TreeNode node) {
         if (node == null) {
             return true;
         }
 
-        if (parentValue != node.val) {
-            return false;
-        }
-
-        return traverse(node.left, node.val) && traverse(node.right, node.val);
+        return node.val == val && isSame(node.left) && isSame(node.right);
     }
-    
-    public boolean isUnivalTree(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
 
-        return traverse(root, root.val);
+    public boolean isUnivalTree(TreeNode root) {
+        val = root.val;
+        return isSame(root);
     }
 
 }
