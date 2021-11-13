@@ -4,22 +4,26 @@ public class Solution {
 
     private int[] dp;
 
-    public int getMinimumCost(int[] cost, int n) {
-        if (n <= 1) {
+    private int step(int[] costs, int step, int cost) {
+        if (step >= costs.length) {
             return 0;
         }
 
-        if (dp[n] > 0) {
-            return dp[n];
+        if (dp[step] > 0) {
+            return dp[step];
         }
 
-        dp[n] = Math.min(getMinimumCost(cost, n - 2) + cost[n - 2], getMinimumCost(cost, n - 1) + cost[n - 1]);
-        return dp[n];
+        int curCost = costs[step];
+
+        dp[step] = Math.min(curCost + step(costs, step + 1, cost + curCost),
+            curCost + step(costs, step + 2, cost + curCost));
+        return dp[step];
     }
 
+
     public int minCostClimbingStairs(int[] cost) {
-        this.dp = new int[cost.length + 1];
-        return getMinimumCost(cost, cost.length);
+        dp = new int[cost.length];
+        return Math.min(step(cost, 0, 0), step(cost, 1, 0));
     }
 
 }
