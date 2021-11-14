@@ -25,30 +25,19 @@ class TreeNode {
 
 public class Solution {
 
-    private Map<Integer, Integer> valueMap;
-    private int pseudoPalindromicCount = 0;
+    private Map<Integer, Integer> countMap = new HashMap<>();
+    private int count = 0;
 
     private boolean isPseudoPalindromic() {
-        boolean hasOdd = false;
-        Set<Integer> keySet = valueMap.keySet();
+        long oddCount = countMap.values().stream()
+            .filter(v -> v % 2 == 1)
+            .count();
 
-        if (keySet.size() == 0) {
-            return false;
+        if (oddCount <= 1) {
+            return true;
         }
 
-        for (Integer key : keySet) {
-            int value = valueMap.get(key);
-
-            if (value % 2 == 1) {
-                if (hasOdd == false) {
-                    hasOdd = true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return false;
     }
 
     private void traverse(TreeNode node) {
@@ -56,24 +45,21 @@ public class Solution {
             return;
         }
 
-        valueMap.put(node.val, valueMap.getOrDefault(node.val, 0) + 1);
+        countMap.put(node.val, countMap.getOrDefault(node.val, 0) + 1);
+
+        if (node.left == null && node.right == null && isPseudoPalindromic()) {
+            count++;
+        }
 
         traverse(node.left);
         traverse(node.right);
 
-        if (node.left == null && node.right == null && isPseudoPalindromic()) {
-            pseudoPalindromicCount++;
-        }
-
-        valueMap.put(node.val, valueMap.getOrDefault(node.val, 0) - 1);
+        countMap.put(node.val, countMap.get(node.val) - 1);
     }
-    
+
     public int pseudoPalindromicPaths (TreeNode root) {
-        valueMap = new HashMap<>();
-
         traverse(root);
-
-        return pseudoPalindromicCount;
+        return count;
     }
 
 }
