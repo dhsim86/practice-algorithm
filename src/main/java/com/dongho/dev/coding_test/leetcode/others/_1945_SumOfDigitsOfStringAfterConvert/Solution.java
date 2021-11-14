@@ -2,30 +2,32 @@ package com.dongho.dev.coding_test.leetcode.others._1945_SumOfDigitsOfStringAfte
 
 public class Solution {
 
-    private String transform(String str) {
-        int value = 0;
+    private String convert(String s) {
+        StringBuilder builder = new StringBuilder();
 
-        for (int i = 0; i < str.length(); i++) {
-            value += str.charAt(i) - '0';
+        for (char c : s.toCharArray()) {
+            builder.append(c - 'a' + 1 + "");
         }
 
-        return String.valueOf(value);
+        return builder.toString();
     }
 
     public int getLucky(String s, int k) {
-        StringBuilder builder = new StringBuilder();
+        s = convert(s);
 
-        for (int i = 0; i < s.length(); i++) {
-            builder.append(s.charAt(i) - 'a' + 1);
-        }
-
-        s = builder.toString();
+        int result = 0;
 
         for (int i = 0; i < k; i++) {
-            s = transform(s);
+            result = 0;
+
+            for (char c : s.toCharArray()) {
+                result += (c - '0');
+            }
+
+            s = result + "";
         }
 
-        return Integer.parseInt(s);
+        return result;
     }
 
 }
