@@ -1,57 +1,61 @@
 package com.dongho.dev.coding_test.leetcode.others._1387_SortIntegersByThePowerValue;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Solution {
 
-    private class PowerPair implements Comparable<PowerPair> {
-        int val;
-        int power;
+    private static class PowerValue implements Comparable<PowerValue> {
 
-        public PowerPair(int val) {
-            this.val = val;
+        private int val;
+        private int power;
 
-            int power = 0;
+        private static int calculatePower(int val) {
+            int count = 0;
+
             while (val != 1) {
-                power++;
                 if (val % 2 == 0) {
-                    val = val / 2;
+                    val /= 2;
                 } else {
                     val = val * 3 + 1;
                 }
+                count++;
             }
+            return count;
+        }
 
-            this.power = power;
+        public PowerValue(int val) {
+            this.val = val;
+            this.power = calculatePower(val);
         }
 
         @Override
-        public int compareTo(PowerPair other) {
-            int result = Integer.compare(this.power, other.power);
-
-            if (result != 0) {
-                return result;
+        public int compareTo(PowerValue o) {
+            int result = Integer.compare(power, o.power);
+            if (result == 0) {
+                return Integer.compare(val, o.val);
             }
-
-            return Integer.compare(this.val, other.val);
+            return result;
         }
-
 
     }
 
     public int getKth(int lo, int hi, int k) {
-        List<PowerPair> powerPairList = new ArrayList<>();
-        
+        Queue<PowerValue> queue = new PriorityQueue<>();
+
         for (int i = lo; i <= hi; i++) {
-            powerPairList.add(new PowerPair(i));
+            queue.add(new PowerValue(i));
         }
 
-        powerPairList = powerPairList.stream()
-            .sorted()
-            .collect(Collectors.toList());
+        for (int i = 0; i < k; i++) {
+            PowerValue powerValue = queue.poll();
 
-        return powerPairList.get(k - 1).val;
+            if (i == k - 1) {
+                return powerValue.val;
+            }
+        }
+
+        return 0;
     }
 
 }
