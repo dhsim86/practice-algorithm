@@ -49,8 +49,8 @@ public class Solution {
             StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < word.length(); i++) {
-                char target = word.charAt(i);
                 char p = pattern.charAt(i);
+                char target = word.charAt(i);
 
                 if (patternMap.get(p) == null && reverseMap.get(target) == null) {
                     patternMap.put(p, target);
