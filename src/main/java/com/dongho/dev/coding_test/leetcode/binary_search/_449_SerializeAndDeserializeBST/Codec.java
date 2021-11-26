@@ -1,8 +1,5 @@
 package com.dongho.dev.coding_test.leetcode.binary_search._449_SerializeAndDeserializeBST;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class TreeNode {
     int val;
     TreeNode left;
