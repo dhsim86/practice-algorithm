@@ -81,7 +81,7 @@ public class Sort {
     }
 
     public static void mergeSort(int[] data, int start, int end) {
-        if (start < end - 1) {  // 한개 요소 이
+        if (end - start > 1) {  // 한개 요소 이
             int mid = (start + end) / 2;
 
             mergeSort(data , start, mid);
@@ -117,7 +117,7 @@ public class Sort {
     }
 
     public static void quickSort(int[] data, int start, int end) {
-        if (start < end - 1) {
+        if (end - start > 1) {
             int pivot = partition(data, start, end);
             quickSort(data, start, pivot);
             quickSort(data, pivot + 1, end);
