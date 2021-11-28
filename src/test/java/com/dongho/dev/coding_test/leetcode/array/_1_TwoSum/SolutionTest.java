@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode._1_TwoSum;
+package com.dongho.dev.coding_test.leetcode.array._1_TwoSum;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
