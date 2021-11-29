@@ -15,6 +15,11 @@ public class Solution {
     // 1000         1 + 0, 1
     // 1001         1 + 1, 2
     // 1010         2 + 0, 2
+
+    // dp[n] = dp(n / 2) + dp (n % 2)
+    // dp[0] = 0
+    // dp[1] = 1
+
     public int getCount(int n) {
         if (n <= 1) {
             return dp[n] = n;
