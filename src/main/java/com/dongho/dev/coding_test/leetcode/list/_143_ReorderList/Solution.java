@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.others._143_ReorderList;
+package com.dongho.dev.coding_test.leetcode.list._143_ReorderList;
 
 import java.util.ArrayList;
 import java.util.List;
