@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.depth_first_search._108_ConvertSortedArrayToBinarySearchTree;
+package com.dongho.dev.coding_test.leetcode.binary_search._108_ConvertSortedArrayToBinarySearchTree;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
