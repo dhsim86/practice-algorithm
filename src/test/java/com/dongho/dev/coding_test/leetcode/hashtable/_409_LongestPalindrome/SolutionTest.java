@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.array._409_LongestPalindrome;
+package com.dongho.dev.coding_test.leetcode.hashtable._409_LongestPalindrome;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
