@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.array._260_SingleNumber3;
+package com.dongho.dev.coding_test.leetcode.hashtable._260_SingleNumber3;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
