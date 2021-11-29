@@ -12,10 +12,12 @@ public class SolutionTest {
         // when
         int result0 = new Solution().numDecodings("12");
         int result1 = new Solution().numDecodings("226");
+        int result2 = new Solution().numDecodings("2101");
 
         // then
         assertThat(result0).isEqualTo(2);
         assertThat(result1).isEqualTo(3);
+        assertThat(result2).isEqualTo(1);
     }
     
 }
