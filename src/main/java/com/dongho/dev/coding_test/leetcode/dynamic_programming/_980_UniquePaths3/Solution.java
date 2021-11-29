@@ -3,18 +3,18 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._980_UniquePaths
 public class Solution {
 
     private int[][] grid;
+    private int m;
+    private int n;
+
     private boolean[][] visited;
     private int remainCount = 0;
 
-    private boolean checkBound(int y, int x) {
-        if (y < 0 || x < 0 || y >= grid.length || x >= grid[0].length) {
-            return true;
+    private int walk(int y, int x) {
+        if (y >= m || x >= n || y < 0 || x < 0) {
+            return 0;
         }
-        return false;
-    }
-    
-    private int getCount(int y, int x) {
-        if (checkBound(y, x) || visited[y][x]) {
+
+        if (visited[y][x]) {
             return 0;
         }
 
@@ -22,45 +22,46 @@ public class Solution {
             return 0;
         }
 
-        if (grid[y][x] == 2) {
-            if (remainCount == 0) {
-                return 1;
-            } else {
-                return 0;
-            }
+        if (grid[y][x] == 2 && remainCount == 0) {
+            return 1;
         }
 
         visited[y][x] = true;
         remainCount--;
 
-        int result = getCount(y, x + 1) + getCount(y + 1, x) + getCount(y, x - 1) + getCount(y - 1, x);
+        int result = walk(y, x + 1) + walk(y + 1, x) + walk(y, x - 1) + walk(y - 1, x);
 
-        visited[y][x] = false;
+        visited[y][x]= false;
         remainCount++;
+
         return result;
     }
 
-
     public int uniquePathsIII(int[][] grid) {
         this.grid = grid;
-        this.remainCount = grid.length * grid[0].length;
+        this.m = grid.length;
+        this.n = grid[0].length;
 
-        visited = new boolean[grid.length][grid[0].length];
-        int startY = 0;
+        this.visited = new boolean[m][n];
+        this.remainCount = m * n;
+
         int startX = 0;
-        
+        int startY = 0;
+
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[0].length; x++) {
+                if (grid[y][x] == 2 || grid[y][x] == -1) {
+                    remainCount--;
+                }
+
                 if (grid[y][x] == 1) {
                     startY = y;
                     startX = x;
-                } else if (grid[y][x] == -1 || grid[y][x] == 2) {
-                    remainCount--;
                 }
             }
         }
 
-        int count = getCount(startY, startX);
-        return count;
+        return walk(startY, startX);
     }
+
 }
