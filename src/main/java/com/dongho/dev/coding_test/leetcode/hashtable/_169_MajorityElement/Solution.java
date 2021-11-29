@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.divide_and_conquer._169_MajorityElement;
+package com.dongho.dev.coding_test.leetcode.hashtable._169_MajorityElement;
 
 import java.util.HashMap;
 import java.util.Map;
