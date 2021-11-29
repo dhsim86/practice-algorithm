@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.sliding_window._122_BestTimeToBuyAndSellStock3;
+package com.dongho.dev.coding_test.leetcode.two_pointers._122_BestTimeToBuyAndSellStock3;
 
 public class Solution {
 

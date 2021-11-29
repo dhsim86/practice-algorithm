@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.greedy._122_BestTimeToBuyAndSellStock2;
+package com.dongho.dev.coding_test.leetcode.two_pointers._122_BestTimeToBuyAndSellStock2;
 
 public class Solution {
 
