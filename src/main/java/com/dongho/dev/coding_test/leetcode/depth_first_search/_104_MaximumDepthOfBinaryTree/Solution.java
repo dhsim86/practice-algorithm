@@ -20,18 +20,16 @@ class TreeNode {
 }
 public class Solution {
 
-    public int recursionDepth(TreeNode node, int currentDepth) {
+    private int traverse(TreeNode node, int cur) {
         if (node == null) {
-            return currentDepth;
+            return cur;
         }
 
-        int left = recursionDepth(node.left, currentDepth + 1);
-        int right = recursionDepth(node.right, currentDepth + 1);
-        return Math.max(left, right);
+        return Math.max(traverse(node.left, cur + 1), traverse(node.right, cur + 1));
     }
-    
+
     public int maxDepth(TreeNode root) {
-        return recursionDepth(root, 0);
+        return traverse(root, 0);
     }
 
 }
