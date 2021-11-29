@@ -24,8 +24,6 @@ public class Solution {
                 end = i;
             } else if (prices[end] > prices[i]) {
                 updateProfit(prices[end] - prices[start]);
-
-                
                 start = end = i;
             }
 
