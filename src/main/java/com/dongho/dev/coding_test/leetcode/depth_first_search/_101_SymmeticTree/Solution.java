@@ -1,6 +1,6 @@
 package com.dongho.dev.coding_test.leetcode.depth_first_search._101_SymmeticTree;
 
-import java.util.LinkedList;
+import java.util.Stack;
 
 class TreeNode {
     int val;
@@ -21,64 +21,47 @@ class TreeNode {
     }
 }
 
-class SimpleStack<T> {
-
-    private LinkedList<T> elementList;
-
-    public SimpleStack() {
-        elementList = new LinkedList<>();
-    }
-
-    public boolean isEmpty() {
-        return elementList.size() == 0;
-    }
-
-    public void push(T element) {
-        elementList.push(element);
-    }
-
-    public T pop() {
-        return elementList.pop();
-    }
-
-}
-
 public class Solution {
+
     public boolean isSymmetric(TreeNode root) {
-        SimpleStack<TreeNode> leftStack = new SimpleStack<>();
-        SimpleStack<TreeNode> rightStack = new SimpleStack<>();
+        Stack<TreeNode> lStack = new Stack<>();
+        Stack<TreeNode> rStack = new Stack<>();
 
-        leftStack.push(root.left);
-        rightStack.push(root.right);
+        lStack.push(root);
+        rStack.push(root);
 
-        while(leftStack.isEmpty() == false && rightStack.isEmpty() == false) {
-            TreeNode left = leftStack.pop();
-            TreeNode right = rightStack.pop();
+        while (lStack.isEmpty() == false && rStack.isEmpty() == false) {
+            TreeNode lNode = lStack.pop();
+            TreeNode rNode = rStack.pop();
 
-            if (left == null && right == null) {
+            if (lNode == null && rNode == null) {
                 continue;
             }
 
-            if ((left == null && right != null) ||
-                (right == null && left != null)) {
+            if (lNode != null && rNode == null) {
                 return false;
             }
 
-            if (left.val != right.val) {
+            if (lNode == null && rNode != null) {
                 return false;
             }
 
-            leftStack.push(left.right);
-            leftStack.push(left.left);
+            if (lNode.val != rNode.val) {
+                return false;
+            }
 
-            rightStack.push(right.left);
-            rightStack.push(right.right);
+            lStack.push(lNode.left);
+            lStack.push(lNode.right);
+
+            rStack.push(rNode.right);
+            rStack.push(rNode.left);
         }
 
-        if (leftStack.isEmpty() == false || rightStack.isEmpty() == false) {
+        if (lStack.size() != rStack.size()) {
             return false;
         }
 
         return true;
     }
+
 }
