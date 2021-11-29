@@ -1,19 +1,13 @@
 package com.dongho.dev.coding_test.leetcode.depth_first_search._100_SameTree;
 
-import java.util.LinkedList;
+import java.util.Stack;
 
 class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-        this.val = val;
-    }
-
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
     TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
@@ -21,48 +15,28 @@ class TreeNode {
     }
 }
 
-class SimpleStack<T> {
-
-    private LinkedList<T> elementList;
-
-    public SimpleStack() {
-        elementList = new LinkedList<>();
-    }
-
-    public boolean isEmpty() {
-        return elementList.size() == 0;
-    }
-
-    public void push(T element) {
-        elementList.push(element);
-    }
-
-    public T pop() {
-        return elementList.pop();
-    }
-
-}
-
-public class Solution {
-
+class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        SimpleStack<TreeNode> pStack = new SimpleStack<>();
-        SimpleStack<TreeNode> qStack = new SimpleStack<>();
+        Stack<TreeNode> pStack = new Stack<>();
+        Stack<TreeNode> qStack = new Stack<>();
 
         pStack.push(p);
         qStack.push(q);
 
-        while (!pStack.isEmpty() && !qStack.isEmpty()) {
+        while (pStack.isEmpty() == false && qStack.isEmpty() == false) {
             TreeNode pNode = pStack.pop();
             TreeNode qNode = qStack.pop();
 
-            if ((pNode == null && qNode != null) ||
-                (qNode == null && pNode != null)) {
+            if (pNode == null && qNode == null) {
+                continue;
+            }
+
+            if (pNode == null && qNode != null) {
                 return false;
             }
 
-            if (pNode == null && qNode == null) {
-                continue;
+            if (pNode != null && qNode == null) {
+                return false;
             }
 
             if (pNode.val != qNode.val) {
@@ -76,8 +50,7 @@ public class Solution {
             qStack.push(qNode.right);
         }
 
-        if ((pStack.isEmpty() && qStack.isEmpty() == false) ||
-            (qStack.isEmpty() && pStack.isEmpty() == false)) {
+        if (pStack.size() != qStack.size()) {
             return false;
         }
 
