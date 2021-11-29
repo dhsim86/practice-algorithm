@@ -12,12 +12,11 @@ public class Solution {
                 return mid;
             }
 
-            if (target < nums[mid]) {
-                end = mid;
-            } else {
+            if (nums[mid] < target) {
                 start = mid + 1;
+            } else {
+                end = mid;
             }
-
             mid = (start + end) / 2;
         }
 
