@@ -6,32 +6,32 @@ public class Solution {
     private int m;
     private int n;
 
-    private int getCount(int x, int y) {
-        if (dp[x][y] > 0) {
-            return dp[x][y];
-        }
+    // dp[y][x] = dp[y + 1][x] + dp[y][x + 1];
+    // y == m && x == n ? 1 : 0
 
-        if (x == m - 1 && y == n - 1) {
+    private int walk(int y, int x) {
+        if (y == m - 1 && x == n - 1) {
             return 1;
         }
 
-        if (x == m - 1) {
-            dp[x][y] = getCount(x, y + 1);
-        } else if (y == n - 1) {
-            dp[x][y] = getCount(x + 1, y);
-        } else {
-            dp[x][y] = getCount(x + 1, y) + getCount(x, y + 1);
+        if (y >= m || x >= n) {
+            return 0;
         }
 
-        return dp[x][y];
+        if (dp[y][x] > 0) {
+            return dp[y][x];
+        }
+
+        dp[y][x] = walk(y + 1, x) + walk(y, x + 1);
+        return dp[y][x];
     }
 
     public int uniquePaths(int m, int n) {
-        dp = new int[m][n];
+        this.dp = new int[m][n];
         this.m = m;
         this.n = n;
 
-        return getCount(0, 0);
+        return walk(0, 0);
     }
 
 }

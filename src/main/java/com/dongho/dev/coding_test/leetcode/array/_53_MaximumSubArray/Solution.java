@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.divide_and_conquer._53_MaximumSubArray;
+package com.dongho.dev.coding_test.leetcode.array._53_MaximumSubArray;
 
 import lombok.extern.slf4j.Slf4j;
 
