@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode._3_LongestSubstringWithoutRepeatingCharacters;
+package com.dongho.dev.coding_test.leetcode.string._3_LongestSubstringWithoutRepeatingCharacters;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;

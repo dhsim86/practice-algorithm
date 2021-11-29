@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode._2_AddTwoNumbers;
+package com.dongho.dev.coding_test.leetcode.list._2_AddTwoNumbers;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;

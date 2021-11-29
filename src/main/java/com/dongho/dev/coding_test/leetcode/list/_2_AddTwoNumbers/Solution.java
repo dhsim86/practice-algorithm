@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode._2_AddTwoNumbers;
+package com.dongho.dev.coding_test.leetcode.list._2_AddTwoNumbers;
 
 class ListNode {
     int val;
