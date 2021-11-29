@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.breadth_firsh_search._111_MinimumDepthOfBinaryTree;
+package com.dongho.dev.coding_test.leetcode.tree._111_MinimumDepthOfBinaryTree;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
