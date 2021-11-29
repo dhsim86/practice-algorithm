@@ -26,18 +26,17 @@ class TreeNode {
 
 public class Solution {
 
-    private TreeNode getTreeNode(List<Integer> numList, int start, int end) {
-        if (end - start == 0) {
+    private TreeNode getTreeNode(List<ListNode> nodeList, int start, int end) {
+        if (end - start < 1) {
             return null;
         }
 
         int mid = (start + end) / 2;
+        TreeNode node = new TreeNode(nodeList.get(mid).val);
+        node.left = getTreeNode(nodeList, start, mid);
+        node.right = getTreeNode(nodeList, mid + 1, end);
 
-        TreeNode treeNode = new TreeNode(numList.get(mid));
-        treeNode.left = getTreeNode(numList, start, mid);
-        treeNode.right = getTreeNode(numList, mid + 1, end);
-
-        return treeNode;
+        return node;
     }
 
     
@@ -46,16 +45,15 @@ public class Solution {
             return null;
         }
 
-        List<Integer> numList = new ArrayList<>();
-        while (head != null) {
-            numList.add(head.val);
-            head = head.next;
-        }
-        
-        int start = 0;
-        int end = numList.size();
+        List<ListNode> nodeList = new ArrayList<>();
 
-        return getTreeNode(numList, start, end);
+        ListNode node = head;
+        while (node != null) {
+            nodeList.add(node);
+            node = node.next;
+        }
+
+        return getTreeNode(nodeList, 0, nodeList.size());
     }
 
 }
