@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.depth_first_search._104_MaximumDepthOfBinaryTree;
+package com.dongho.dev.coding_test.leetcode.tree._104_MaximumDepthOfBinaryTree;
 
 class TreeNode {
     int val;

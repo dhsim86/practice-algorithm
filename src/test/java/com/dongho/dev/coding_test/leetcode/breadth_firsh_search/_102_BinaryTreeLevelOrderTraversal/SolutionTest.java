@@ -1,4 +1,4 @@
-package com.dongho.dev.coding_test.leetcode.tree._102_BinaryTreeLevelOrderTraversal;
+package com.dongho.dev.coding_test.leetcode.breadth_firsh_search._102_BinaryTreeLevelOrderTraversal;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
