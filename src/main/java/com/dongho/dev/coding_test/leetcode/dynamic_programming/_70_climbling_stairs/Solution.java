@@ -2,24 +2,30 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._70_climbling_st
 
 public class Solution {
     
-    private int[] memo = null;
+    // dp[n] = dp[n - 1] + dp[n - 2]
+
+    // dp[1] = 1
+    // dp[2] = 2
+    
+    // dp[3] = dp[1] + dp[2]
+    //  1 + 2
+    //  2 + 1
 
     public int climbStairs(int n) {
-        if (memo == null) {
-            memo = new int[n + 1];
-        }
-
         if (n <= 2) {
             return n;
         }
 
-        if (memo[n] != 0) {
-            return memo[n];
+        int dp[] = new int[n + 1];
+
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
-        // f(1) == 1, f(2) == 2
-        // f(n) == f(n - 1) + f(n - 2)
-        memo[n] = climbStairs(n - 1) + climbStairs(n - 2);
-        return memo[n];
+
+        return dp[n];
     }
 
 }
