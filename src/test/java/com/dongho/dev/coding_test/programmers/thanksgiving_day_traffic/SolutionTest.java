@@ -29,10 +29,6 @@ public class SolutionTest {
             "2016-09-15 21:00:00.966 0.381s",
             "2016-09-15 21:00:02.066 2.62s"
         };
-        String[] input3 = new String[] {
-            "2016-09-15 01:00:04.001 2.0s",
-            "2016-09-15 01:00:07.000 2s"
-        };
 
         Solution solution = new Solution();
 

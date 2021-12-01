@@ -9,7 +9,6 @@ public class PowerTest {
     @Test
     public void powerTest() {
         // given
-        int n = 5;
 
         // when
         double result_0 = Power.iterPower(2, 5);

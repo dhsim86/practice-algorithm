@@ -1,7 +1,7 @@
 package com.dongho.dev.coding_test.programmers.stone;
 
 class Solution {
-
+/*
     private int step(int[] stones, int current, int step) {
         int max = Math.min(stones.length, current + step);
         int i = current;
@@ -17,7 +17,7 @@ class Solution {
         }
 
         return -1;
-    }
+    }*/
 
     public int solution(int[] stones, int k) {
         int answer = 0;

@@ -3,7 +3,7 @@ package com.dongho.dev.inner;
 public class InnerSample {
 
     class InstanceInner {
-        private int snumber = staticNumber;
+        //private int snumber = staticNumber;
         private int inumber = instanceNumber;
     }
 

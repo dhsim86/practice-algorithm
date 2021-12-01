@@ -1,7 +1,5 @@
 package com.dongho.dev.coding_test.programmers.level3_test.격자쿼리;
 
-import java.util.ArrayList;
-
 public class Solution {
 
     private int[] approveQuery(int maxX, int maxY, int curX, int curY, int[] query) {

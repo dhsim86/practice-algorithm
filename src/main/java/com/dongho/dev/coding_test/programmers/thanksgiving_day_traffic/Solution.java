@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Solution {
 
-    static class LogData implements Comparable {
+    static class LogData implements Comparable<LogData> {
         private LocalDateTime startTime;
         private LocalDateTime endTime;
 
@@ -21,7 +21,7 @@ public class Solution {
         }
 
         @Override
-        public int compareTo(Object o) {
+        public int compareTo(LogData o) {
             if (o instanceof LogData) {
                 LogData other = (LogData) o;
 
