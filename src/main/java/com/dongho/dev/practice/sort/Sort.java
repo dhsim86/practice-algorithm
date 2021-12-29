@@ -44,50 +44,44 @@ public class Sort {
         }
     }
 
-    private static void merge(int[] array, int start, int mid, int end) {
-        int[] sortedArray = new int[array.length];
-
-        System.out.print("merge: ");
-        for (int i = start; i < mid; i++) {
-            System.out.print("[" + array[i] + "]");
-        }
-        System.out.print(" + ");
-        for (int i = mid; i < end; i++) {
-            System.out.print("[" + array[i] + "]");
-        }
-        System.out.println("");
-
-        int target = start;
+    private static void merge(int[] nums, int start, int mid, int end) {
+        int[] newArray = new int[end - start];
+        int index = 0;
         int i = start;
         int j = mid;
+
         while (i < mid && j < end) {
-            if (array[i] <= array[j]) {
-                sortedArray[target++] = array[i++];
+            if (nums[i] <= nums[j]) {
+                newArray[index++] = nums[i++];
             } else {
-                sortedArray[target++] = array[j++];
+                newArray[index++] = nums[j++];
             }
         }
 
         while (i < mid) {
-            sortedArray[target++] = array[i++];
-        }
-        while (j < end) {
-            sortedArray[target++] = array[j++];
+            newArray[index++] = nums[i++];
         }
 
-        for (int x = start; x < end; x++) {
-            array[x] = sortedArray[x];
+        while (j < end) {
+            newArray[index++] = nums[j++];
+        }
+
+        index = 0;
+        for (i = start; i < end; i++) {
+            nums[i] = newArray[index++];
         }
     }
 
     public static void mergeSort(int[] data, int start, int end) {
-        if (end - start > 1) {  // 한개 요소 이
-            int mid = (start + end) / 2;
-
-            mergeSort(data , start, mid);
-            mergeSort(data, mid, end);
-            merge(data, start, mid, end);
+        if (end - start <= 1) {
+            return;
         }
+
+        int mid = (start + end) / 2;
+
+        mergeSort(data, start, mid);
+        mergeSort(data, mid, end);
+        merge(data, start, mid, end);
     }
 
     private static int partition(int[] data, int start, int end) {
@@ -95,7 +89,7 @@ public class Sort {
         int left = start;
         int right = end - 1;
 
-        while (left < right) {
+        while (true) {
             while (left <= right && data[pivot] >= data[left]) {
                 left++;
             }
@@ -103,11 +97,13 @@ public class Sort {
                 right--;
             }
 
-            if (left < right) {
-                int tmp = data[left];
-                data[left] = data[right];
-                data[right] = tmp;
+            if (left > right) {
+                break;
             }
+
+            int tmp = data[left];
+            data[left] = data[right];
+            data[right] = tmp;
         }
         int tmp = data[pivot];
         data[pivot] = data[right];
@@ -117,11 +113,13 @@ public class Sort {
     }
 
     public static void quickSort(int[] data, int start, int end) {
-        if (end - start > 1) {
-            int pivot = partition(data, start, end);
-            quickSort(data, start, pivot);
-            quickSort(data, pivot + 1, end);
+        if (end - start <= 1) {
+            return;
         }
+
+        int pivot = partition(data, start, end);
+        quickSort(data, start, pivot);
+        quickSort(data, pivot + 1, end);
     }
 
 }
