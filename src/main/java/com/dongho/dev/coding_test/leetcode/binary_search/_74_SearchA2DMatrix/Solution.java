@@ -2,20 +2,22 @@ package com.dongho.dev.coding_test.leetcode.binary_search._74_SearchA2DMatrix;
 
 public class Solution {
 
-    private int searchIndex(int[] array, int target) {
+    private int searchIndex(int[] matrix, int target) {
         int start = 0;
-        int end = array.length;
+        int end = matrix.length;
         int mid = (start + end) / 2;
 
         while (end - start >= 1) {
-            if (target == array[mid]) {
-                return mid;
+            int val = matrix[mid];
+
+            if (val == target) {
+                break;
             }
 
-            if (target < array[mid]) {
-                end = mid;
-            } else {
+            if (val < target) {
                 start = mid + 1;
+            } else {
+                end = mid;
             }
 
             mid = (start + end) / 2;
@@ -31,21 +33,19 @@ public class Solution {
         }
 
         int row = searchIndex(firstColumns, target);
-        if (row == matrix.length || matrix[row][0] > target) {
+        if (row >= matrix.length || matrix[row][0] > target) {
             row = Math.max(0, row - 1);
         }
 
-        int[] columns = new int[matrix[0].length];
-        for (int i = 0; i < matrix[0].length; i++) {
-            columns[i] = matrix[row][i];
-        }
-
-        int col = searchIndex(columns, target);
-        if (col == matrix[0].length) {
+        int col = searchIndex(matrix[row], target);
+        if (col >= matrix[row].length) {
             col = Math.max(0, col - 1);
         }
 
-        return matrix[row][col] == target ? true : false;
+        if (matrix[row][col] == target) {
+            return true;
+        }
+        return false;
     }
 
 }
