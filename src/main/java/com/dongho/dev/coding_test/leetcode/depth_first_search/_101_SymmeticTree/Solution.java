@@ -24,26 +24,27 @@ class TreeNode {
 public class Solution {
 
     public boolean isSymmetric(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return true;
+        }
+
         Stack<TreeNode> lStack = new Stack<>();
         Stack<TreeNode> rStack = new Stack<>();
 
-        lStack.push(root);
-        rStack.push(root);
+        lStack.push(root.left);
+        rStack.push(root.right);
 
         while (lStack.isEmpty() == false && rStack.isEmpty() == false) {
             TreeNode lNode = lStack.pop();
             TreeNode rNode = rStack.pop();
 
+            if ((lNode == null && rNode != null) ||
+                (lNode != null && rNode == null)) {
+                    return false;
+            }
+
             if (lNode == null && rNode == null) {
                 continue;
-            }
-
-            if (lNode != null && rNode == null) {
-                return false;
-            }
-
-            if (lNode == null && rNode != null) {
-                return false;
             }
 
             if (lNode.val != rNode.val) {
@@ -57,11 +58,10 @@ public class Solution {
             rStack.push(rNode.left);
         }
 
-        if (lStack.size() != rStack.size()) {
+        if (lStack.isEmpty() == false || rStack.isEmpty() == false) {
             return false;
         }
 
         return true;
     }
-
 }
