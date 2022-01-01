@@ -2,50 +2,49 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._91_DecodeWays;
 
 public class Solution {
 
-    private String s;
+    // dp
+    // count => if end
+    // dp[0] = dp[1] + dp[2];
+    private int[] dp;
 
-    // dp[start][end] = dp[start + 1][end + 1] + dp[start][end + 1];
-    // s(start, end) is not valid: 0
-    // if end is s.length: 1
+    private boolean validate(String str) {
+        int digit = Integer.parseInt(str);
 
-    private int[][] dp;
-
-    private boolean isValid(int start, int end) {
-        if (start == end) {
-            return false;
-        }
-
-        Integer value = Integer.parseInt(s.substring(start, end));
-
-        if (value < 1 || value > 26) {
+        if (digit < 1 || digit > 26) {
             return false;
         }
         return true;
     }
 
-    private int getWay(int start, int end) {
-        if (dp[start][end] > 0) {
-            return dp[start][end];
+    private int getResult(String s, int start, int end) {
+        if (start >= s.length()) {
+            return 1;
         }
 
-        if (isValid(start, end)) {
-            if (end == s.length()) {
-                return 1;
-            } else {
-                // must (end, end + 1), not (start + 1, end + 1) for 2 digit.
-                dp[start][end] = getWay(end, end + 1) + getWay(start, end + 1);
-                return dp[start][end];
-            }
+        if (end > s.length()) {
+            return 0;
         }
 
-        return 0;
+        if (dp[start] > 0) {
+            return dp[start];
+        }
+
+        String sub = s.substring(start, end);
+        int result = 0;
+
+        if (validate(sub)) {
+            result = getResult(s, end, end + 1) + getResult(s, start, end + 1);
+        }
+
+        dp[start] = result;
+        return dp[start];
     }
 
-    public int numDecodings(String s) {
-        this.s = s;
-        this.dp = new int[s.length() + 1][s.length() + 1];
+    
 
-        return getWay(0, 1);
+    public int numDecodings(String s) {
+        dp = new int[s.length()];
+        return getResult(s, 0, 1);
     }
 
 }
