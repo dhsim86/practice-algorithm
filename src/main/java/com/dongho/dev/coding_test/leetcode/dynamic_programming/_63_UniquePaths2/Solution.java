@@ -3,17 +3,12 @@ package com.dongho.dev.coding_test.leetcode.dynamic_programming._63_UniquePaths2
 public class Solution {
 
     // dp[y][x] = dp[y + 1][x] + dp[y][x + 1];
-    // y == m && x == n ? 1 : 0
-    // dp[y][x] == 1 ? 0
-
+    // 1 <== y == m - 1 && x == n - 1
+    // 0 <== obstacleGrid[y][x] == 1
     private int[][] dp;
-    private int[][] obstacleGrid;
 
-    private int m;
-    private int n;
-
-    private int walk(int y, int x) {
-        if (y >= m || x >= n) {
+    private int walk(int y, int x, int[][] obstacleGrid) {
+        if (y >= dp.length || x >= dp[0].length) {
             return 0;
         }
 
@@ -21,7 +16,7 @@ public class Solution {
             return 0;
         }
 
-        if (y == m - 1 && x == n - 1) {
+        if (y == dp.length - 1 && x == dp[0].length - 1) {
             return 1;
         }
 
@@ -29,17 +24,15 @@ public class Solution {
             return dp[y][x];
         }
 
-        dp[y][x] = walk(y + 1, x) + walk(y, x + 1);
+        dp[y][x] = walk(y + 1, x, obstacleGrid) + walk(y, x + 1, obstacleGrid);
         return dp[y][x];
     }
 
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        this.dp = new int[obstacleGrid.length][obstacleGrid[0].length];
-        this.obstacleGrid = obstacleGrid;
-        this.m = obstacleGrid.length;
-        this.n = obstacleGrid[0].length;
+        dp = new int[obstacleGrid.length][obstacleGrid[0].length];
 
-        return walk(0, 0);
+        int result = walk(0, 0, obstacleGrid);
+        return result;
     }
 
 }
