@@ -3,67 +3,65 @@ package com.dongho.dev.coding_test.leetcode.list._2_AddTwoNumbers;
 class ListNode {
     int val;
     ListNode next;
-
     ListNode() {}
-    ListNode(int val) {
-        this.val = val;
-    }
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
 
 public class Solution {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = l1;
-        ListNode prevL1 = l1;
-
-        int tmp = 0;
-        int val = 0;
+        int nextVal = 0;
         int base = 10;
 
-        while (l1 != null && l2 != null) {
-            prevL1 = l1;
+        ListNode node = null;
+        ListNode current = null;
 
-            val = (l1.val + l2.val + tmp) % base;
-            tmp = (l1.val + l2.val + tmp) / base;
-            l1.val = val;
+        do {
+            if (node == null) {
+                node = current = new ListNode();
+            } else {
+                current.next = new ListNode();
+                current = current.next;
+            }
+
+            int sum = l1.val + l2.val + nextVal;
+
+            current.val = sum % base;
+            nextVal = sum / base;
 
             l1 = l1.next;
             l2 = l2.next;
+
+        } while (l1 != null && l2 != null);
+
+        ListNode remainTarget = null;
+
+        if (l1 == null) {
+            remainTarget = l2;
+        } else if (l2 == null) {
+            remainTarget = l1;
         }
 
-        while (l1 != null) {
-            prevL1 = l1;
+        while (remainTarget != null) {
+            current.next = new ListNode();
+            current = current.next;
 
-            val = (l1.val + tmp) % base;
-            tmp = (l1.val + tmp) / base;
-            l1.val = val;
+            int sum = remainTarget.val + nextVal;
+            current.val = sum % base;
+            nextVal = sum / base;
 
-            l1 = l1.next;
+            remainTarget = remainTarget.next;
+        };
+
+        if (nextVal != 0) {
+            current.next = new ListNode();
+            current = current.next;
+            current.val = nextVal;
         }
 
-        if (l2 != null) {
-            prevL1.next = l2;
 
-            while (l2 != null) {
-                prevL1 = l2;
-
-                val = (l2.val + tmp) % base;
-                tmp = (l2.val + tmp) / base;
-                l2.val = val;
-
-                l2 = l2.next;
-            }
-        }
-
-        if (tmp != 0) {
-            prevL1.next = new ListNode(tmp);
-        }
-
-        return result;
+        return node;
     }
     
 }
