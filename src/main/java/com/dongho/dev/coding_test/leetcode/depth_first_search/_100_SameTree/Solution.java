@@ -1,6 +1,7 @@
 package com.dongho.dev.coding_test.leetcode.depth_first_search._100_SameTree;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class TreeNode {
     int val;
@@ -17,40 +18,36 @@ class TreeNode {
 
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        Stack<TreeNode> pStack = new Stack<>();
-        Stack<TreeNode> qStack = new Stack<>();
+        Queue<TreeNode> pQueue = new LinkedList<>();
+        Queue<TreeNode> qQueue = new LinkedList<>();
 
-        pStack.push(p);
-        qStack.push(q);
+        pQueue.add(p);
+        qQueue.add(q);
 
-        while (pStack.isEmpty() == false && qStack.isEmpty() == false) {
-            TreeNode pNode = pStack.pop();
-            TreeNode qNode = qStack.pop();
+        while (pQueue.isEmpty() == false && qQueue.isEmpty() == false) {
+            TreeNode pNode = pQueue.poll();
+            TreeNode qNode = qQueue.poll();
+
+            if ((pNode == null && qNode != null) ||
+                (pNode != null && qNode == null)) {
+                    return false;
+            }
 
             if (pNode == null && qNode == null) {
                 continue;
-            }
-
-            if (pNode == null && qNode != null) {
-                return false;
-            }
-
-            if (pNode != null && qNode == null) {
-                return false;
             }
 
             if (pNode.val != qNode.val) {
                 return false;
             }
 
-            pStack.push(pNode.left);
-            pStack.push(pNode.right);
-
-            qStack.push(qNode.left);
-            qStack.push(qNode.right);
+            pQueue.add(pNode.left);
+            pQueue.add(pNode.right);
+            qQueue.add(qNode.left);
+            qQueue.add(qNode.right);
         }
 
-        if (pStack.size() != qStack.size()) {
+        if (pQueue.isEmpty() == false || qQueue.isEmpty() == false) {
             return false;
         }
 
