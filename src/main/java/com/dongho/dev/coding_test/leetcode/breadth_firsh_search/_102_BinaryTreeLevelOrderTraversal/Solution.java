@@ -26,33 +26,33 @@ public class Solution {
             return Collections.emptyList();
         }
 
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> resultList = new ArrayList<>();
+
         Queue<TreeNode> queue = new LinkedList<>();
-        
         queue.add(root);
 
         while (queue.isEmpty() == false) {
-            List<Integer> list = new ArrayList<>();
-            Queue<TreeNode> nextQueue = new LinkedList<>();
+            List<Integer> levelList = new ArrayList<>();
+            Queue<TreeNode> newQueue = new LinkedList<>();
 
             while (queue.isEmpty() == false) {
                 TreeNode node = queue.poll();
-                list.add(node.val);
+                levelList.add(node.val);
 
                 if (node.left != null) {
-                    nextQueue.add(node.left);
+                    newQueue.add(node.left);
                 }
-
+                
                 if (node.right != null) {
-                    nextQueue.add(node.right);
+                    newQueue.add(node.right);
                 }
             }
 
-            result.add(list);
-            queue = nextQueue;
+            resultList.add(levelList);
+            queue = newQueue;
         }
-
-        return result;
-    } 
+        
+        return resultList;
+    }
 
 }
