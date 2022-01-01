@@ -34,36 +34,5 @@ public class SolutionTest {
         assertThat(result4).isEqualTo(1);
         assertThat(result5).isEqualTo(3);
     }
-
-    @Test
-    public void testWithSlidingWindow() {
-        // given
-        String input0 = "abcabcbb";
-        String input1 = "bbbbb";
-        String input2 = "pwwkew";
-        String input3 = "";
-        String input4 = " ";
-        String input5 = "aabaab!bb";
-        Solution solution = new Solution();
-
-        // when
-        
-        int result0 = solution.lengthOfLongestSubstringUsingSlidingWindow(input0);
-        
-        int result1 = solution.lengthOfLongestSubstringUsingSlidingWindow(input1);
-        int result2 = solution.lengthOfLongestSubstringUsingSlidingWindow(input2);
-        int result3 = solution.lengthOfLongestSubstringUsingSlidingWindow(input3);
-        int result4 = solution.lengthOfLongestSubstringUsingSlidingWindow(input4);
-        int result5 = solution.lengthOfLongestSubstringUsingSlidingWindow(input5);
-
-        // then
-        
-        assertThat(result0).isEqualTo(3);
-        assertThat(result1).isEqualTo(1);
-        assertThat(result2).isEqualTo(3);
-        assertThat(result3).isEqualTo(0);
-        assertThat(result4).isEqualTo(1);
-        assertThat(result5).isEqualTo(3);
-    }
     
 }

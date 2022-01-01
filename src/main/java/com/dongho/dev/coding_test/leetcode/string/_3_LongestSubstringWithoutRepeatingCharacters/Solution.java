@@ -3,56 +3,23 @@ package com.dongho.dev.coding_test.leetcode.string._3_LongestSubstringWithoutRep
 public class Solution {
 
     public int lengthOfLongestSubstring(String s) {
-        String tmp = "";
-        String result = "";
-
-        for (int i = 0; i < s.length(); i++) {
-            if (tmp.contains("" + s.charAt(i))) {
-                if (result.length() < tmp.length()) {
-                    result = tmp;
-                }
-                tmp += s.charAt(i);
-                tmp = tmp.substring(tmp.indexOf(s.charAt(i)) + 1, tmp.length());
-            } else {
-                tmp += s.charAt(i);
-            }
-        }
-
-        return result.length() < tmp.length() ? tmp.length() : result.length();
-    }
-
-    public int lengthOfLongestSubstringUsingSlidingWindow(String s) {
-        int startIndex = 0;
-        int endIndex = 0;
+        String sub = "";
+        int index = 0;
         int max = 0;
 
-        if (s.length() == 0) {
-            return 0;
-        }
+        while (index < s.length()) {
+            char c = s.charAt(index);
+            int indexOf = sub.indexOf(c);
 
-        while(endIndex < s.length()) {
-            String subString = s.substring(startIndex, endIndex);
-            
-            if (subString.length() == 0) {
-                endIndex++;
-                continue;
+            if (indexOf == -1) {
+                sub = sub + c;
+            } else {
+                sub = sub.substring(indexOf + 1, sub.length());
+                sub = sub + c;
             }
 
-            int foundIndex = subString.indexOf(s.charAt(endIndex));
-            if (foundIndex >= 0) {
-                max = subString.length() > max ? subString.length() : max;
-                startIndex = startIndex + foundIndex + 1;
-            }
-
-            endIndex++;
-
-            if (endIndex >= s.length() && max < endIndex - startIndex) {
-                return endIndex - startIndex;
-            }
-        }
-
-        if (max == 0) {
-            return s.length();
+            max = Math.max(max, sub.length());
+            index++;
         }
 
         return max;
