@@ -8,15 +8,18 @@ public class Solution {
         int mid = (start + end) / 2;
 
         while (end - start >= 1) {
-            if (nums[mid] == target) {
-                return mid;
+            int val = nums[mid];
+
+            if (val == target) {
+                break;
             }
 
-            if (nums[mid] < target) {
+            if (val < target) {
                 start = mid + 1;
             } else {
                 end = mid;
             }
+
             mid = (start + end) / 2;
         }
 
