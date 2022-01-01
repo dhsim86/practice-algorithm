@@ -15,11 +15,13 @@ public class Solution {
             return 1;
         }
 
+        if (dp[y][x] > 0) {
+            return dp[y][x];
+        }
+
         dp[y][x] = walk(y + 1, x) + walk(y, x + 1);
         return dp[y][x];
     }
-
-
 
     public int uniquePaths(int m, int n) {
         dp = new int[m][n];
