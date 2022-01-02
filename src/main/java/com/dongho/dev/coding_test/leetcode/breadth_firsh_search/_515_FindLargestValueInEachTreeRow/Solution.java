@@ -32,34 +32,34 @@ public class Solution {
             return Collections.emptyList();
         }
 
-        List<Integer> results = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
+
         queue.add(root);
 
         while (queue.isEmpty() == false) {
+            Queue<TreeNode> newQueue = new LinkedList<>();
             int max = Integer.MIN_VALUE;
-            List<TreeNode> childs = new ArrayList<>();
 
             while (queue.isEmpty() == false) {
                 TreeNode node = queue.poll();
-        
-                max = Math.max(node.val, max);
-                
+
+                max = Math.max(max, node.val);
+
                 if (node.left != null) {
-                    childs.add(node.left);
+                    newQueue.add(node.left);
                 }
+
                 if (node.right != null) {
-                    childs.add(node.right);
+                    newQueue.add(node.right);
                 }
             }
 
-            results.add(max);
-            for (TreeNode child : childs) {
-                queue.add(child);
-            }
+            result.add(max);
+            queue = newQueue;
         }
 
-        return results;
+        return result;
     }
 
 }
