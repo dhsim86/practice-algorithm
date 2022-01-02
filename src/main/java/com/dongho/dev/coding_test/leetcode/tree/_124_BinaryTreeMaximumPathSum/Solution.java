@@ -21,27 +21,26 @@ class TreeNode {
 
 public class Solution {
 
-    private int answer = Integer.MIN_VALUE;
+    private int max = Short.MIN_VALUE;
 
-    private int getValue(TreeNode root) {
-        if (root == null) {
-            return 0;
+    private int calculate(TreeNode node) {
+        if (node == null) {
+            return Short.MIN_VALUE;
         }
 
-        int leftVal = getValue(root.left);
-        int rightVal = getValue(root.right);
+        int left = calculate(node.left);
+        int right = calculate(node.right);
+        int pathMax = Math.max(node.val, Math.max(node.val + left, node.val + right));
 
-        int allVal = root.val + leftVal + rightVal;
-        int partVal = Math.max(root.val, root.val + Math.max(leftVal, rightVal));
+        int all = node.val + left + right;
+        max = Math.max(max, Math.max(pathMax, all));
 
-        answer = Math.max(answer, Math.max(allVal, partVal));
-        return partVal;
+        return pathMax;
     }
 
-    
     public int maxPathSum(TreeNode root) {
-        getValue(root);
-        return answer;
+        calculate(root);
+        return max;
     }
 
 }
