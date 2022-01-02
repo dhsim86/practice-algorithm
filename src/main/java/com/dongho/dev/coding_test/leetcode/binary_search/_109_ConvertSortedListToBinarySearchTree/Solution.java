@@ -26,34 +26,31 @@ class TreeNode {
 
 public class Solution {
 
-    private TreeNode getTreeNode(List<ListNode> nodeList, int start, int end) {
-        if (end - start < 1) {
+    private TreeNode getBinaryTree(List<Integer> numList, int start, int end) {
+        if (end - start <= 0) {
             return null;
         }
 
         int mid = (start + end) / 2;
-        TreeNode node = new TreeNode(nodeList.get(mid).val);
-        node.left = getTreeNode(nodeList, start, mid);
-        node.right = getTreeNode(nodeList, mid + 1, end);
+        TreeNode node = new TreeNode(numList.get(mid));
+        node.left = getBinaryTree(numList, start, mid);
+        node.right = getBinaryTree(numList, mid + 1, end);
 
         return node;
     }
 
-    
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) {
             return null;
         }
+        List<Integer> numList = new ArrayList<>();
 
-        List<ListNode> nodeList = new ArrayList<>();
-
-        ListNode node = head;
-        while (node != null) {
-            nodeList.add(node);
-            node = node.next;
+        while (head != null) {
+            numList.add(head.val);
+            head = head.next;
         }
 
-        return getTreeNode(nodeList, 0, nodeList.size());
+        return getBinaryTree(numList, 0, numList.size());
     }
 
 }
