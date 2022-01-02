@@ -7,23 +7,18 @@ public class Solution {
     
     public int longestPalindrome(String s) {
         Map<Character, Integer> map = new HashMap<>();
-        boolean hasOdd = false;
-        int count = 0;
-
         for (char c : s.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        for (char c : map.keySet()) {
-            if (map.get(c) % 2 == 0) {
-                count += map.get(c);
-            } else {
-                hasOdd = true;
-                count += (map.get(c) / 2 * 2);
-            }
-        }
+        int val = map.entrySet().stream()
+            .map(e -> e.getValue() / 2 * 2)
+            .reduce(0, Integer::sum);
 
-        return count + (hasOdd ? 1 : 0);
+        boolean hasOdd = map.entrySet().stream()
+            .anyMatch(e -> e.getValue() % 2 == 1);
+        return hasOdd ? val + 1 : val;
     }
 
 }
+
