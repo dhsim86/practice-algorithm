@@ -1,7 +1,8 @@
-package com.dongho.dev.coding_test.leetcode.dynamic_programming._304_RangeSumQuery2DImmutable;
+package com.dongho.dev.coding_test.leetcode.prefix_sum._304_RangeSumQuery2DImmutable;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class SolutionTest {
     
     @Test
