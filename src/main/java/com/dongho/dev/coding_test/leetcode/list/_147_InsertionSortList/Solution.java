@@ -10,12 +10,12 @@ class ListNode {
 
 public class Solution {
 
-    private ListNode insertForSort(ListNode head, ListNode node) {
+    private ListNode insertForSort(ListNode node, ListNode target) {
         ListNode prev = null;
-        ListNode candidate = head;
+        ListNode candidate = node;
 
         while (candidate != null) {
-            if (node.val < candidate.val) {
+            if (candidate.val > target.val) {
                 break;
             }
 
@@ -24,14 +24,13 @@ public class Solution {
         }
 
         if (prev == null) {
-            node.next = head;
-            head = node;
+            target.next = node;
+            return target;
         } else {
-            node.next = candidate;
-            prev.next = node;
+            target.next = candidate;
+            prev.next = target;
+            return node;
         }
-
-        return head;
     }
 
     public ListNode insertionSortList(ListNode head) {
@@ -44,13 +43,14 @@ public class Solution {
         sorted.next = null;
 
         while (unSorted != null) {
-            ListNode node = unSorted;
+            ListNode target = unSorted;
             unSorted = unSorted.next;
-            node.next = null;
 
-            sorted = insertForSort(sorted, node);
+            target.next = null;
+            sorted = insertForSort(sorted, target);
         }
 
         return sorted;
     }
+
 }
