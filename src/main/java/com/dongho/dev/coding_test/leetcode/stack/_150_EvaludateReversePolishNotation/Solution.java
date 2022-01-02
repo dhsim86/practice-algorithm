@@ -4,39 +4,37 @@ import java.util.Stack;
 
 public class Solution {
     
-    private boolean isOperator(String op) {
-        if (op.length() > 1) {
+    private boolean isOperator(String token) {
+        if (token.length() > 1) {
             return false;
         }
-
-        char c = op.charAt(0);
+        
+        char c = token.charAt(0);
 
         switch(c) {
             case '+':
             case '-':
-            case '*':
             case '/':
+            case '*':
                 return true;
-            default:
-                return false;
         }
+        return false;
     }
 
-    private int operate(int i1, int i2, String op) {
-        char c = op.charAt(0);
+    private int calculate(String token, int operand1, int operand2) {
+        char c = token.charAt(0);
 
-        switch(c) {
+        switch (c) {
             case '+':
-                return i1 + i2;
+                return operand1 + operand2;
             case '-':
-                return i1 - i2;
-            case '*':
-                return i1 * i2;
+                return operand1 - operand2;
             case '/':
-                return i1 / i2;
-            default:
-                return 0;
+                return operand1 / operand2;
+            case '*':
+                return operand1 * operand2;
         }
+        return 0;
     }
     
     public int evalRPN(String[] tokens) {
@@ -44,10 +42,9 @@ public class Solution {
 
         for (String token : tokens) {
             if (isOperator(token)) {
-                int i2 = stack.pop();
-                int i1 = stack.pop();
-
-                stack.push(operate(i1, i2, token));
+                int operand2 = stack.pop();
+                int operand1 = stack.pop();
+                stack.push(calculate(token, operand1, operand2));
             } else {
                 stack.push(Integer.parseInt(token));
             }
