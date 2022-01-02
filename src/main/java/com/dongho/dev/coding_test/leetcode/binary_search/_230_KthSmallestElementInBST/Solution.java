@@ -21,28 +21,27 @@ class TreeNode {
 
 public class Solution {
 
-    int result = 0;
-    int order = 0;
+    private int kth = 0;
+    private int val = 0;
 
-    private void getKthSmallestNode(TreeNode node, int k) {
+    private void traverse(TreeNode node, int k) {
         if (node == null) {
             return;
         }
 
-        getKthSmallestNode(node.left, k);
-        order++;
+        traverse(node.left, k);
 
-        if (order == k) {
-            result = node.val;
+        kth++;
+        if (kth == k) {
+            val = node.val;
         }
 
-        getKthSmallestNode(node.right, k);
+        traverse(node.right, k);
     }
 
-
     public int kthSmallest(TreeNode root, int k) {
-        getKthSmallestNode(root, k);
-        return result;
+        traverse(root, k);
+        return val;
     }
 
 }
