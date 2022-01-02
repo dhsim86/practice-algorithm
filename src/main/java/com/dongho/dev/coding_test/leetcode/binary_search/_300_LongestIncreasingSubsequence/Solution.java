@@ -12,7 +12,7 @@ public class Solution {
 
         while (end - start >= 1) {
             if (list.get(mid) == val) {
-                return mid;
+                break;
             }
 
             if (val < list.get(mid)) {
@@ -28,19 +28,19 @@ public class Solution {
     }
 
     public int lengthOfLIS(int[] nums) {
-        List<Integer> subArray = new ArrayList<>();
-        subArray.add(nums[0]);
+        List<Integer> list = new ArrayList<>();
+        list.add(nums[0]);
 
-        for (int i = 1; i < nums.length; i++) {
-            int index = getIndex(subArray, nums[i]);
+        for (int i = 0; i < nums.length; i++) {
+            int index = getIndex(list, nums[i]);
 
-            if (index < subArray.size()) {
-                subArray.set(index, nums[i]);
+            if (index >= list.size()) {
+                list.add(nums[i]);
             } else {
-                subArray.add(nums[i]);
+                list.set(index, nums[i]);
             }
         }
 
-        return subArray.size();
+        return list.size();
     }
 }
