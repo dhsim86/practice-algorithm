@@ -20,22 +20,21 @@ class TreeNode {
 }
 public class Solution {
 
-    private TreeNode getTreeNode(int[] nums, int start, int end) {
-        if (end - start < 1) {
+    private TreeNode getBinaryTree(int[] nums, int start, int end) {
+        if (end - start <= 0) {
             return null;
         }
 
         int mid = (start + end) / 2;
-
         TreeNode node = new TreeNode(nums[mid]);
-        node.left = getTreeNode(nums, start, mid);
-        node.right = getTreeNode(nums, mid + 1, end);
+        node.left = getBinaryTree(nums, start, mid);
+        node.right = getBinaryTree(nums, mid + 1, end);
 
         return node;
     }
 
     public TreeNode sortedArrayToBST(int[] nums) {
-        return getTreeNode(nums, 0, nums.length);
+        return getBinaryTree(nums, 0, nums.length);
     }
     
 }
