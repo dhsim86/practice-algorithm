@@ -1,5 +1,6 @@
 package com.dongho.dev.coding_test.leetcode.hashtable._137_SingleNumber2;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class Solution {
 
         return map.entrySet().stream()
             .filter(e -> e.getValue() == 1)
-            .mapToInt(e -> e.getKey())
+            .map(e -> e.getKey())
             .findFirst()
             .orElse(0);
     }
