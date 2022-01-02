@@ -23,10 +23,10 @@ public class Solution {
 
         int target = sum / 2;
 
-        return dp(numList, new ArrayList<>(), target, new HashMap<>());
+        return dp(numList, target, new HashMap<>());
     }
 
-    private boolean dp(List<Integer> availableList, List<Integer> usedList, int target, Map<Integer, Boolean> map) {
+    private boolean dp(List<Integer> availableList, int target, Map<Integer, Boolean> map) {
         if (target == 0) {
             return true;
         }
@@ -44,10 +44,7 @@ public class Solution {
             List<Integer> newAvailableList = new ArrayList<>(availableList);
             newAvailableList.remove(num);
 
-            List<Integer> newUsedList = new ArrayList<>(usedList);
-            usedList.add(num);
-
-            result = dp(newAvailableList, newUsedList, target - num, map);
+            result = dp(newAvailableList, target - num, map);
 
             if (result) {
                 break;
