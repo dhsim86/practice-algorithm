@@ -1,7 +1,8 @@
 package com.dongho.dev.coding_test.leetcode.list._143_ReorderList;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 class ListNode {
     int val;
@@ -14,34 +15,41 @@ class ListNode {
 public class Solution {
     
     public void reorderList(ListNode head) {
-        List<ListNode> nodeList = new ArrayList<>();
-        ListNode temp = head;
+        Queue<ListNode> queue = new LinkedList<>();
+        Stack<ListNode> stack = new Stack<>();
 
-        while (temp != null) {
-            nodeList.add(temp);
-            temp = temp.next;
+        int count = 0;
+
+        while (head != null) {
+            queue.add(head);
+            stack.add(head);
+            head = head.next;
+            count++;
         }
 
-        temp = null;
-        boolean toggle = true;
+        ListNode newHead = null;
+        ListNode current = null;
 
-        while (nodeList.isEmpty() == false) {
-            ListNode node = null;
-            if (toggle) {
-                node = nodeList.remove(0);
+        for (int i = 0; i < count; i++) {
+            ListNode newNode;
+
+            if (i % 2 == 0) {
+                newNode = queue.poll();
             } else {
-                node = nodeList.remove(nodeList.size() - 1);
-            }
-            if (temp == null) {
-                temp = node;
-                head = temp;
-            } else {
-                temp.next = node;
-                temp = temp.next;
-                temp.next = null;
+                newNode = stack.pop();
             }
 
-            toggle = !toggle;
+            newNode.next = null;
+
+            if (newHead == null) {
+                newHead = current = newNode;
+            } else {
+                current.next = newNode;
+                current = current.next;
+            }
         }
+
+        head = newHead;
     }
+
 }
