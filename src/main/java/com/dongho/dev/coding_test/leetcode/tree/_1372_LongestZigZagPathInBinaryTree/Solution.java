@@ -25,11 +25,11 @@ public class Solution {
         val = Math.max(val, cur);
 
         if (isLeftWalk) {
-            walk(node.left, isLeftWalk, 1);
-            walk(node.right, !isLeftWalk, cur + 1);
+            walk(node.left, true, 1);
+            walk(node.right, false, cur + 1);
         } else {
-            walk(node.left, !isLeftWalk, cur + 1);
-            walk(node.right, isLeftWalk, 1);
+            walk(node.left, true, cur + 1);
+            walk(node.right, false, 1);
         }
     }
     
