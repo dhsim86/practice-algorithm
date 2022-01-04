@@ -1,6 +1,5 @@
 package com.dongho.dev.coding_test.programmers.cote_c.수강내역;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
